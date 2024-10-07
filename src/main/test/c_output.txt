@@ -1,0 +1,3702 @@
+count=0
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HU
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HURR
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HURRIC
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HURRICAN
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HURRICANE 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HURRICANE SE
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HURRICANE SEAS
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HURRICANE SEASON
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HURRICANE SEASON. 
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HURRICANE SEASON. WI
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HURRICANE SEASON. WILL
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HURRICANE SEASON. WILL 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HURRICANE SEASON. WILL TH
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HURRICANE SEASON. WILL THIS
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HURRICANE SEASON. WILL THIS 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HURRICANE SEASON. WILL THIS 
+EX
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HURRICANE SEASON. WILL THIS 
+EXTR
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HURRICANE SEASON. WILL THIS 
+EXTREM
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HURRICANE SEASON. WILL THIS 
+EXTREME 
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HURRICANE SEASON. WILL THIS 
+EXTREME SY
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HURRICANE SEASON. WILL THIS 
+EXTREME SYST
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HURRICANE SEASON. WILL THIS 
+EXTREME SYSTEM
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HURRICANE SEASON. WILL THIS 
+EXTREME SYSTEM A
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HURRICANE SEASON. WILL THIS 
+EXTREME SYSTEM ACT
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HURRICANE SEASON. WILL THIS 
+EXTREME SYSTEM ACTUA
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HURRICANE SEASON. WILL THIS 
+EXTREME SYSTEM ACTUALL
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HURRICANE SEASON. WILL THIS 
+EXTREME SYSTEM ACTUALLY 
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HURRICANE SEASON. WILL THIS 
+EXTREME SYSTEM ACTUALLY HA
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HURRICANE SEASON. WILL THIS 
+EXTREME SYSTEM ACTUALLY HAPP
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HURRICANE SEASON. WILL THIS 
+EXTREME SYSTEM ACTUALLY HAPPEN
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HURRICANE SEASON. WILL THIS 
+EXTREME SYSTEM ACTUALLY HAPPEN?
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+EXTREME SYSTEM ACTUALLY HAPPEN?
+HO
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+EXTREME SYSTEM ACTUALLY HAPPEN?
+HOPE
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+EXTREME SYSTEM ACTUALLY HAPPEN?
+HOPE 
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+EXTREME SYSTEM ACTUALLY HAPPEN?
+HOPE NO
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+EXTREME SYSTEM ACTUALLY HAPPEN?
+HOPE NOT.
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+EXTREME SYSTEM ACTUALLY HAPPEN?
+HOPE NOT. 
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HOPE NOT. 
+>>
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HOPE NOT. 
+>> 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HOPE NOT. 
+>> TH
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HOPE NOT. 
+>> THAT
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HOPE NOT. 
+>> THAT 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HOPE NOT. 
+>> THAT IS
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HOPE NOT. 
+>> THAT IS 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HOPE NOT. 
+>> THAT IS AL
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HOPE NOT. 
+>> THAT IS ALWA
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HOPE NOT. 
+>> THAT IS ALWAYS
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HOPE NOT. 
+>> THAT IS ALWAYS 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HOPE NOT. 
+>> THAT IS ALWAYS TH
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HOPE NOT. 
+>> THAT IS ALWAYS THE 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HOPE NOT. 
+>> THAT IS ALWAYS THE HO
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HOPE NOT. 
+>> THAT IS ALWAYS THE HOPE
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HOPE NOT. 
+>> THAT IS ALWAYS THE HOPE. 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HOPE NOT. 
+>> THAT IS ALWAYS THE HOPE. AN
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HOPE NOT. 
+>> THAT IS ALWAYS THE HOPE. AND
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+>> THAT IS ALWAYS THE HOPE. AND
+IT
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+>> THAT IS ALWAYS THE HOPE. AND
+IT’
+count=0
+count2=0
+caption_frame_backspace()
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+>> THAT IS ALWAYS THE HOPE. AND
+IT'
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+>> THAT IS ALWAYS THE HOPE. AND
+IT'S 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+>> THAT IS ALWAYS THE HOPE. AND
+IT'S AL
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+>> THAT IS ALWAYS THE HOPE. AND
+IT'S ALWA
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+>> THAT IS ALWAYS THE HOPE. AND
+IT'S ALWAYS
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+>> THAT IS ALWAYS THE HOPE. AND
+IT'S ALWAYS A
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+>> THAT IS ALWAYS THE HOPE. AND
+IT'S ALWAYS A 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+>> THAT IS ALWAYS THE HOPE. AND
+IT'S ALWAYS A FO
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+>> THAT IS ALWAYS THE HOPE. AND
+IT'S ALWAYS A FORE
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+>> THAT IS ALWAYS THE HOPE. AND
+IT'S ALWAYS A FORECA
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+>> THAT IS ALWAYS THE HOPE. AND
+IT'S ALWAYS A FORECAST
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+>> THAT IS ALWAYS THE HOPE. AND
+IT'S ALWAYS A FORECAST A
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+>> THAT IS ALWAYS THE HOPE. AND
+IT'S ALWAYS A FORECAST AND
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+>> THAT IS ALWAYS THE HOPE. AND
+IT'S ALWAYS A FORECAST AND 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+IT'S ALWAYS A FORECAST AND 
+TH
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+IT'S ALWAYS A FORECAST AND 
+THIN
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+IT'S ALWAYS A FORECAST AND 
+THINGS
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+IT'S ALWAYS A FORECAST AND 
+THINGS 
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+IT'S ALWAYS A FORECAST AND 
+THINGS CA
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+IT'S ALWAYS A FORECAST AND 
+THINGS CAN 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+IT'S ALWAYS A FORECAST AND 
+THINGS CAN PA
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+IT'S ALWAYS A FORECAST AND 
+THINGS CAN PAN 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+IT'S ALWAYS A FORECAST AND 
+THINGS CAN PAN OU
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+IT'S ALWAYS A FORECAST AND 
+THINGS CAN PAN OUT 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+IT'S ALWAYS A FORECAST AND 
+THINGS CAN PAN OUT AN
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+IT'S ALWAYS A FORECAST AND 
+THINGS CAN PAN OUT AND 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+IT'S ALWAYS A FORECAST AND 
+THINGS CAN PAN OUT AND TH
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+IT'S ALWAYS A FORECAST AND 
+THINGS CAN PAN OUT AND THEY
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+IT'S ALWAYS A FORECAST AND 
+THINGS CAN PAN OUT AND THEY D
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+IT'S ALWAYS A FORECAST AND 
+THINGS CAN PAN OUT AND THEY DO.
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THINGS CAN PAN OUT AND THEY DO.
+BU
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THINGS CAN PAN OUT AND THEY DO.
+BUT 
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THINGS CAN PAN OUT AND THEY DO.
+BUT I 
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THINGS CAN PAN OUT AND THEY DO.
+BUT I WA
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THINGS CAN PAN OUT AND THEY DO.
+BUT I WANT
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THINGS CAN PAN OUT AND THEY DO.
+BUT I WANT 
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THINGS CAN PAN OUT AND THEY DO.
+BUT I WANT TO
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THINGS CAN PAN OUT AND THEY DO.
+BUT I WANT TO 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THINGS CAN PAN OUT AND THEY DO.
+BUT I WANT TO TA
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THINGS CAN PAN OUT AND THEY DO.
+BUT I WANT TO TAKE
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THINGS CAN PAN OUT AND THEY DO.
+BUT I WANT TO TAKE 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THINGS CAN PAN OUT AND THEY DO.
+BUT I WANT TO TAKE A 
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THINGS CAN PAN OUT AND THEY DO.
+BUT I WANT TO TAKE A LO
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THINGS CAN PAN OUT AND THEY DO.
+BUT I WANT TO TAKE A LOOK
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THINGS CAN PAN OUT AND THEY DO.
+BUT I WANT TO TAKE A LOOK 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THINGS CAN PAN OUT AND THEY DO.
+BUT I WANT TO TAKE A LOOK AT
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THINGS CAN PAN OUT AND THEY DO.
+BUT I WANT TO TAKE A LOOK AT 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+BUT I WANT TO TAKE A LOOK AT 
+WH
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+BUT I WANT TO TAKE A LOOK AT 
+WHY 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+BUT I WANT TO TAKE A LOOK AT 
+WHY WE
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+BUT I WANT TO TAKE A LOOK AT 
+WHY WE 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+BUT I WANT TO TAKE A LOOK AT 
+WHY WE MA
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+BUT I WANT TO TAKE A LOOK AT 
+WHY WE MAY 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+BUT I WANT TO TAKE A LOOK AT 
+WHY WE MAY BE
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+BUT I WANT TO TAKE A LOOK AT 
+WHY WE MAY BE 
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+BUT I WANT TO TAKE A LOOK AT 
+WHY WE MAY BE SE
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+BUT I WANT TO TAKE A LOOK AT 
+WHY WE MAY BE SEEI
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+BUT I WANT TO TAKE A LOOK AT 
+WHY WE MAY BE SEEING
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+BUT I WANT TO TAKE A LOOK AT 
+WHY WE MAY BE SEEING 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+BUT I WANT TO TAKE A LOOK AT 
+WHY WE MAY BE SEEING A 
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+BUT I WANT TO TAKE A LOOK AT 
+WHY WE MAY BE SEEING A LU
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+BUT I WANT TO TAKE A LOOK AT 
+WHY WE MAY BE SEEING A LULL
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+BUT I WANT TO TAKE A LOOK AT 
+WHY WE MAY BE SEEING A LULL F
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+BUT I WANT TO TAKE A LOOK AT 
+WHY WE MAY BE SEEING A LULL FOR
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+WHY WE MAY BE SEEING A LULL FOR
+TH
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+WHY WE MAY BE SEEING A LULL FOR
+THE 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+WHY WE MAY BE SEEING A LULL FOR
+THE NE
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+WHY WE MAY BE SEEING A LULL FOR
+THE NEXT
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+WHY WE MAY BE SEEING A LULL FOR
+THE NEXT C
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+WHY WE MAY BE SEEING A LULL FOR
+THE NEXT COU
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+WHY WE MAY BE SEEING A LULL FOR
+THE NEXT COUPL
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+WHY WE MAY BE SEEING A LULL FOR
+THE NEXT COUPLE 
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+WHY WE MAY BE SEEING A LULL FOR
+THE NEXT COUPLE OF
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+WHY WE MAY BE SEEING A LULL FOR
+THE NEXT COUPLE OF 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+WHY WE MAY BE SEEING A LULL FOR
+THE NEXT COUPLE OF WE
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+WHY WE MAY BE SEEING A LULL FOR
+THE NEXT COUPLE OF WEEK
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+WHY WE MAY BE SEEING A LULL FOR
+THE NEXT COUPLE OF WEEKS 
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+WHY WE MAY BE SEEING A LULL FOR
+THE NEXT COUPLE OF WEEKS AN
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+WHY WE MAY BE SEEING A LULL FOR
+THE NEXT COUPLE OF WEEKS AND 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THE NEXT COUPLE OF WEEKS AND 
+NO
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THE NEXT COUPLE OF WEEKS AND 
+NOT 
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THE NEXT COUPLE OF WEEKS AND 
+NOT MU
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THE NEXT COUPLE OF WEEKS AND 
+NOT MUCH
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THE NEXT COUPLE OF WEEKS AND 
+NOT MUCH A
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THE NEXT COUPLE OF WEEKS AND 
+NOT MUCH ACT
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THE NEXT COUPLE OF WEEKS AND 
+NOT MUCH ACTIV
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THE NEXT COUPLE OF WEEKS AND 
+NOT MUCH ACTIVIT
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THE NEXT COUPLE OF WEEKS AND 
+NOT MUCH ACTIVITY.
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THE NEXT COUPLE OF WEEKS AND 
+NOT MUCH ACTIVITY. I
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THE NEXT COUPLE OF WEEKS AND 
+NOT MUCH ACTIVITY. IN 
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THE NEXT COUPLE OF WEEKS AND 
+NOT MUCH ACTIVITY. IN FA
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THE NEXT COUPLE OF WEEKS AND 
+NOT MUCH ACTIVITY. IN FACT
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THE NEXT COUPLE OF WEEKS AND 
+NOT MUCH ACTIVITY. IN FACT, 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+NOT MUCH ACTIVITY. IN FACT, 
+WH
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+NOT MUCH ACTIVITY. IN FACT, 
+WHEN
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+NOT MUCH ACTIVITY. IN FACT, 
+WHEN 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+NOT MUCH ACTIVITY. IN FACT, 
+WHEN WE
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+NOT MUCH ACTIVITY. IN FACT, 
+WHEN WE 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+NOT MUCH ACTIVITY. IN FACT, 
+WHEN WE TY
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+NOT MUCH ACTIVITY. IN FACT, 
+WHEN WE TYPI
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+NOT MUCH ACTIVITY. IN FACT, 
+WHEN WE TYPICA
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+NOT MUCH ACTIVITY. IN FACT, 
+WHEN WE TYPICALL
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+NOT MUCH ACTIVITY. IN FACT, 
+WHEN WE TYPICALLY 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+NOT MUCH ACTIVITY. IN FACT, 
+WHEN WE TYPICALLY SE
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+NOT MUCH ACTIVITY. IN FACT, 
+WHEN WE TYPICALLY SEE 
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+NOT MUCH ACTIVITY. IN FACT, 
+WHEN WE TYPICALLY SEE A 
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+NOT MUCH ACTIVITY. IN FACT, 
+WHEN WE TYPICALLY SEE A RA
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+NOT MUCH ACTIVITY. IN FACT, 
+WHEN WE TYPICALLY SEE A RAMP
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+NOT MUCH ACTIVITY. IN FACT, 
+WHEN WE TYPICALLY SEE A RAMP 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+NOT MUCH ACTIVITY. IN FACT, 
+WHEN WE TYPICALLY SEE A RAMP UP
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+WHEN WE TYPICALLY SEE A RAMP UP
+HE
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+WHEN WE TYPICALLY SEE A RAMP UP
+HERE
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+WHEN WE TYPICALLY SEE A RAMP UP
+HERE, 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+WHEN WE TYPICALLY SEE A RAMP UP
+HERE, FI
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+WHEN WE TYPICALLY SEE A RAMP UP
+HERE, FIRS
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+WHEN WE TYPICALLY SEE A RAMP UP
+HERE, FIRST 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+WHEN WE TYPICALLY SEE A RAMP UP
+HERE, FIRST LE
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+WHEN WE TYPICALLY SEE A RAMP UP
+HERE, FIRST LET’
+count=0
+count2=0
+caption_frame_backspace()
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+WHEN WE TYPICALLY SEE A RAMP UP
+HERE, FIRST LET'
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+WHEN WE TYPICALLY SEE A RAMP UP
+HERE, FIRST LET'S 
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+WHEN WE TYPICALLY SEE A RAMP UP
+HERE, FIRST LET'S TA
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+WHEN WE TYPICALLY SEE A RAMP UP
+HERE, FIRST LET'S TALK
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+WHEN WE TYPICALLY SEE A RAMP UP
+HERE, FIRST LET'S TALK 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+WHEN WE TYPICALLY SEE A RAMP UP
+HERE, FIRST LET'S TALK AB
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+WHEN WE TYPICALLY SEE A RAMP UP
+HERE, FIRST LET'S TALK ABOU
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+WHEN WE TYPICALLY SEE A RAMP UP
+HERE, FIRST LET'S TALK ABOUT 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HERE, FIRST LET'S TALK ABOUT 
+TH
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HERE, FIRST LET'S TALK ABOUT 
+THE 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HERE, FIRST LET'S TALK ABOUT 
+THE FO
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HERE, FIRST LET'S TALK ABOUT 
+THE FORE
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HERE, FIRST LET'S TALK ABOUT 
+THE FORECA
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HERE, FIRST LET'S TALK ABOUT 
+THE FORECAST
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HERE, FIRST LET'S TALK ABOUT 
+THE FORECAST 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HERE, FIRST LET'S TALK ABOUT 
+THE FORECAST AN
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HERE, FIRST LET'S TALK ABOUT 
+THE FORECAST AND 
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HERE, FIRST LET'S TALK ABOUT 
+THE FORECAST AND RE
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HERE, FIRST LET'S TALK ABOUT 
+THE FORECAST AND REAL
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HERE, FIRST LET'S TALK ABOUT 
+THE FORECAST AND REALLY
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HERE, FIRST LET'S TALK ABOUT 
+THE FORECAST AND REALLY 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HERE, FIRST LET'S TALK ABOUT 
+THE FORECAST AND REALLY NO
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HERE, FIRST LET'S TALK ABOUT 
+THE FORECAST AND REALLY NOAA
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+HERE, FIRST LET'S TALK ABOUT 
+THE FORECAST AND REALLY NOAA 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THE FORECAST AND REALLY NOAA 
+CA
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THE FORECAST AND REALLY NOAA 
+CAME
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THE FORECAST AND REALLY NOAA 
+CAME 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THE FORECAST AND REALLY NOAA 
+CAME UP
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THE FORECAST AND REALLY NOAA 
+CAME UP W
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THE FORECAST AND REALLY NOAA 
+CAME UP WIT
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THE FORECAST AND REALLY NOAA 
+CAME UP WITH 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THE FORECAST AND REALLY NOAA 
+CAME UP WITH AN
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THE FORECAST AND REALLY NOAA 
+CAME UP WITH AN U
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THE FORECAST AND REALLY NOAA 
+CAME UP WITH AN UPD
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THE FORECAST AND REALLY NOAA 
+CAME UP WITH AN UPDAT
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THE FORECAST AND REALLY NOAA 
+CAME UP WITH AN UPDATE 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THE FORECAST AND REALLY NOAA 
+CAME UP WITH AN UPDATE AN
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THE FORECAST AND REALLY NOAA 
+CAME UP WITH AN UPDATE AND 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THE FORECAST AND REALLY NOAA 
+CAME UP WITH AN UPDATE AND TH
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THE FORECAST AND REALLY NOAA 
+CAME UP WITH AN UPDATE AND THEY
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+CAME UP WITH AN UPDATE AND THEY
+DI
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+CAME UP WITH AN UPDATE AND THEY
+DIDN
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+CAME UP WITH AN UPDATE AND THEY
+DIDN’
+count=0
+count2=0
+caption_frame_backspace()
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+CAME UP WITH AN UPDATE AND THEY
+DIDN'
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+CAME UP WITH AN UPDATE AND THEY
+DIDN'T 
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+CAME UP WITH AN UPDATE AND THEY
+DIDN'T UP
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+CAME UP WITH AN UPDATE AND THEY
+DIDN'T UPDA
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+CAME UP WITH AN UPDATE AND THEY
+DIDN'T UPDATE
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+CAME UP WITH AN UPDATE AND THEY
+DIDN'T UPDATE M
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+CAME UP WITH AN UPDATE AND THEY
+DIDN'T UPDATE MUC
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+CAME UP WITH AN UPDATE AND THEY
+DIDN'T UPDATE MUCH.
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+CAME UP WITH AN UPDATE AND THEY
+DIDN'T UPDATE MUCH. R
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+CAME UP WITH AN UPDATE AND THEY
+DIDN'T UPDATE MUCH. RIG
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+CAME UP WITH AN UPDATE AND THEY
+DIDN'T UPDATE MUCH. RIGHT
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+CAME UP WITH AN UPDATE AND THEY
+DIDN'T UPDATE MUCH. RIGHT. 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+DIDN'T UPDATE MUCH. RIGHT. 
+TH
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+DIDN'T UPDATE MUCH. RIGHT. 
+THEY
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+DIDN'T UPDATE MUCH. RIGHT. 
+THEY 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+DIDN'T UPDATE MUCH. RIGHT. 
+THEY JU
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+DIDN'T UPDATE MUCH. RIGHT. 
+THEY JUST
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+DIDN'T UPDATE MUCH. RIGHT. 
+THEY JUST 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+DIDN'T UPDATE MUCH. RIGHT. 
+THEY JUST TO
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+DIDN'T UPDATE MUCH. RIGHT. 
+THEY JUST TOOK
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+DIDN'T UPDATE MUCH. RIGHT. 
+THEY JUST TOOK 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+DIDN'T UPDATE MUCH. RIGHT. 
+THEY JUST TOOK OF
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+DIDN'T UPDATE MUCH. RIGHT. 
+THEY JUST TOOK OFF 
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+DIDN'T UPDATE MUCH. RIGHT. 
+THEY JUST TOOK OFF ON
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+DIDN'T UPDATE MUCH. RIGHT. 
+THEY JUST TOOK OFF ONE 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+DIDN'T UPDATE MUCH. RIGHT. 
+THEY JUST TOOK OFF ONE ST
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+DIDN'T UPDATE MUCH. RIGHT. 
+THEY JUST TOOK OFF ONE STOR
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+DIDN'T UPDATE MUCH. RIGHT. 
+THEY JUST TOOK OFF ONE STORM.
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+DIDN'T UPDATE MUCH. RIGHT. 
+THEY JUST TOOK OFF ONE STORM. 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THEY JUST TOOK OFF ONE STORM. 
+ST
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THEY JUST TOOK OFF ONE STORM. 
+STIL
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THEY JUST TOOK OFF ONE STORM. 
+STILL 
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+count2=1
+Exit timestamp >= dts
+count=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit timestamp >= dts
+count=0
+count2=0
+Exit status != LIBCAPTION_OK
+-------------------------------
+data:
+THEY JUST TOOK OFF ONE STORM. 
+STILL TR
+------------------------------------------------------------
