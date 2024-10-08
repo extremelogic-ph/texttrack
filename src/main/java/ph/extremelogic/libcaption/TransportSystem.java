@@ -23,25 +23,57 @@
  */
 package ph.extremelogic.libcaption;
 
+import lombok.Getter;
+import lombok.Setter;
 import ph.extremelogic.libcaption.constant.LibCaptionStatus;
 import ph.extremelogic.texttrack.utils.Debug;
 
 import static ph.extremelogic.libcaption.Mpeg.STREAM_TYPE_H265;
 
+/**
+ * The {@code TransportSystem} class provides functionality to parse MPEG transport stream packets
+ * and extract data such as Program Map Table (PMT), elementary streams, and presentation timestamps (PTS/DTS).
+ * It includes methods to parse packets, calculate timestamps, and extract stream data for further processing.
+ */
 public class TransportSystem {
+    /** MPEG timebase frequency used for PTS/DTS calculations (90 kHz). */
+    public static final double MPEG_TIMEBASE = 90000.0;
+
+    /** The size of a standard MPEG transport stream packet in bytes. */
     public static final int TS_PACKET_SIZE = 188;
+
+    /** Program Map Table PID. */
     private short pmtpId;
+
+    /** Elementary stream PID for closed captions. */
     private short ccpId;
+
+    /** The stream type (e.g., H.264, H.265). */
     private short streamType;
+
+    /** The Presentation Timestamp (PTS) in MPEG timestamp format. */
     private long pts;
+
+    /** The Decode Timestamp (DTS) in MPEG timestamp format. */
     private long dts;
+
+    /** The size of the extracted data payload. */
+    @Getter
+    @Setter
     private int size;
+
+    /** The extracted data payload from the transport stream packet. */
+    @Getter
+    @Setter
     private byte[] data;
 
     public TransportSystem() {
         init();
     }
 
+    /**
+     * Initializes the transport system by resetting all fields to their default values.
+     */
     private void init() {
         pmtpId = 0;
         ccpId = 0;
@@ -52,22 +84,13 @@ public class TransportSystem {
         data = null;
     }
 
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-    public byte[] getData() {
-        return data;
-    }
-
-    public void setData(byte[] data) {
-        this.data = data;
-    }
-
+    /**
+     * Parses the Presentation Timestamp (PTS) from the specified byte array at the given offset.
+     *
+     * @param data   the byte array containing the transport stream data
+     * @param offset the offset in the byte array where the PTS is located
+     * @return the parsed PTS as a long value
+     */
     private long parsePts(byte[] data, int offset) {
         long p = 0;
         p |= ((long) (data[offset] & 0x0E)) << 29;
@@ -78,7 +101,13 @@ public class TransportSystem {
         return p;
     }
 
-
+    /**
+     * Parses a transport stream packet and extracts relevant information such as PTS, DTS, and payload data.
+     *
+     * @param packetData the byte array containing the transport stream packet
+     * @return the status of the parsing operation, represented by the ordinal value of {@code LibCaptionStatus}
+     * @throws IllegalArgumentException if the packet size is not equal to {@link #TS_PACKET_SIZE}
+     */
     public int parsePacket(byte[] packetData) {
         if (packetData.length != TS_PACKET_SIZE) {
             throw new IllegalArgumentException("Packet size must be " + TS_PACKET_SIZE + " bytes");
@@ -161,15 +190,30 @@ public class TransportSystem {
         return LibCaptionStatus.OK.ordinal();
     }
 
+    /**
+     * Returns the Decode Timestamp (DTS) in seconds.
+     *
+     * @return the DTS in seconds
+     */
     public double dtsSeconds() {
-        return this.dts / 90000.0;
+        return this.dts / MPEG_TIMEBASE;
     }
 
+    /**
+     * Returns the Presentation Timestamp (PTS) in seconds.
+     *
+     * @return the PTS in seconds
+     */
     public double ptsSeconds() {
-        return this.pts / 90000.0;
+        return this.pts / MPEG_TIMEBASE;
     }
 
+    /**
+     * Returns the Composition Time Stamp (CTS) in seconds, calculated as the difference between PTS and DTS.
+     *
+     * @return the CTS in seconds
+     */
     public double ctsSeconds() {
-        return ((double) this.pts - this.dts) / 90000.0;
+        return ((double) this.pts - this.dts) / MPEG_TIMEBASE;
     }
 }

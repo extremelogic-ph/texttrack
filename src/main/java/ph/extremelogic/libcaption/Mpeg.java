@@ -270,11 +270,11 @@ public class Mpeg {
 
                         // Emplace back
                         packet.latent++;
-                        Cea708Data cea708 = packet.getCEA708At(packet.latent - 1);
+                        Cea708Data cea708Data = packet.getCEA708At(packet.latent - 1);
 
-                        cea708.init(dts + cts);
+                        cea708Data.init(dts + cts);
 
-                        newPacketStatus = Cea708.parseH264(msg.getPayload(), msg.getSize(), cea708, index);
+                        newPacketStatus = Cea708.parseH264(msg.getPayload(), msg.getSize(), cea708Data, index);
                         packet.status = CaptionFrame.statusUpdate(packet.status, newPacketStatus);
 
                         mpegBitstreamCea708Sort(packet);
@@ -290,15 +290,15 @@ public class Mpeg {
                                 System.out.println("Exit status != LIBCAPTION_OK");
                                 break;
                             }
-                            cea708 = mpegBitstreamCea708At(packet, 0);
-                            Debug.print(String.format("%.6f", cea708.getTimestamp()) + " >= " + String.format("%.6f", dts));
-                            if (cea708.getTimestamp() >= dts) {
+                            cea708Data = mpegBitstreamCea708At(packet, 0);
+                            Debug.print(String.format("%.6f", cea708Data.getTimestamp()) + " >= " + String.format("%.6f", dts));
+                            if (cea708Data.getTimestamp() >= dts) {
                                 System.out.println("Exit timestamp >= dts");
                                 break;
                             }
                             System.out.println("count2=" + count2++);
 
-                            newPacketStatus = Cea708.toCaptionFrame(frame, cea708);
+                            newPacketStatus = Cea708.toCaptionFrame(frame, cea708Data);
                             packet.status = CaptionFrame.statusUpdate(LibCaptionStatus.OK, newPacketStatus);
                             packet.front = (packet.front + 1) % MAX_REFERENCE_FRAMES;
                             packet.latent--;
@@ -337,14 +337,14 @@ public class Mpeg {
                 int posA = (packet.front + j - 1) % MAX_REFERENCE_FRAMES;
                 int posB = (packet.front + j) % MAX_REFERENCE_FRAMES;
 
-                Cea708Data a = packet.cea708[posA];
-                Cea708Data b = packet.cea708[posB];
+                Cea708Data a = packet.cea708Data[posA];
+                Cea708Data b = packet.cea708Data[posB];
 
                 if (a.getTimestamp() > b.getTimestamp()) {
                     // Swap a and b in the array
-                    Cea708Data temp = packet.cea708[posA];
-                    packet.cea708[posA] = packet.cea708[posB];
-                    packet.cea708[posB] = temp;
+                    Cea708Data temp = packet.cea708Data[posA];
+                    packet.cea708Data[posA] = packet.cea708Data[posB];
+                    packet.cea708Data[posB] = temp;
 
                     swapped = true;
                 }
@@ -356,6 +356,6 @@ public class Mpeg {
 
 
     private static Cea708Data mpegBitstreamCea708At(MpegBitStream packet, int pos) {
-        return packet.cea708[(packet.front + pos) % MAX_REFERENCE_FRAMES];
+        return packet.cea708Data[(packet.front + pos) % MAX_REFERENCE_FRAMES];
     }
 }

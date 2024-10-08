@@ -23,14 +23,32 @@
  */
 package ph.extremelogic.libcaption;
 
+/**
+ * The {@code Utf8} class provides utility methods for working with UTF-8 encoded characters.
+ * It includes methods for determining the length of a UTF-8 character, checking for whitespace characters,
+ * and copying UTF-8 characters between byte arrays.
+ *
+ * This class is not instantiable and only provides static utility methods.
+ */
 public class Utf8 {
+    /**
+     * The default maximum file size for UTF-8 processing, set to 50 MB.
+     */
     public static final int UFTF_DEFAULT_MAX_FILE_SIZE = 50 * 1024 * 1024;
 
+    /**
+     * Private constructor to prevent instantiation of this utility class.
+     */
     private Utf8() {
         // Prevent instantiation
     }
 
-    // returns the length of the char in bytes
+    /**
+     * Determines the length of a UTF-8 character based on the first byte of the provided byte array.
+     *
+     * @param c the byte array containing the UTF-8 character
+     * @return the length of the character in bytes, or 0 if the input is null or invalid
+     */
     public static int utf8CharLength(byte[] c) {
         if (c == null || c.length == 0 || c[0] == 0) {
             return 0;
@@ -44,7 +62,14 @@ public class Utf8 {
         return UTF8_CHAR_LENGTH[(c[0] >> 3) & 0x1F];
     }
 
-    // returns true if the first character is whitespace
+    /**
+     * Determines if the first character in the provided byte array is a whitespace character.
+     * Whitespace characters include space, tab, new line, and other control characters.
+     *
+     * @param c the byte array containing the UTF-8 character
+     * @return {@code true} if the first character is a whitespace character, {@code false} otherwise
+     */
+
     public static boolean utf8CharWhitespace(byte[] c) {
         if (c == null || c.length == 0) {
             return false;
@@ -59,7 +84,13 @@ public class Utf8 {
         return c.length >= 2 && (c[0] & 0xFF) == 0xC2 && (c[1] & 0xFF) == 0xA0;
     }
 
-    // copies a UTF-8 character
+    /**
+     * Copies a UTF-8 character from the source byte array to the destination byte array.
+     *
+     * @param dst the destination byte array where the character will be copied
+     * @param src the source byte array containing the UTF-8 character to be copied
+     * @return the number of bytes copied, or 0 if the source array is invalid or the destination array is too small
+     */
     public static int utf8CharCopy(byte[] dst, byte[] src) {
         int bytes = utf8CharLength(src);
 

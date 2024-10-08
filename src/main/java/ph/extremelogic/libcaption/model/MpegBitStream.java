@@ -40,7 +40,7 @@ public class MpegBitStream {
     // Should probablly be a linked list
     public int front;
     public int latent;
-    public Cea708Data[] cea708;
+    public Cea708Data[] cea708Data;
 
     // Constructor to initialize the MPEG bitstream
     public MpegBitStream() {
@@ -55,13 +55,13 @@ public class MpegBitStream {
         this.status = LibCaptionStatus.OK;
         this.front = 0;
         this.latent = 0;
-        cea708 = new Cea708Data[MAX_REFERENCE_FRAMES];
+        cea708Data = new Cea708Data[MAX_REFERENCE_FRAMES];
         for (int i = 0; i < MAX_REFERENCE_FRAMES; i++) {
-            cea708[i] = new Cea708Data();
+            cea708Data[i] = new Cea708Data();
         }
     }
 
     public Cea708Data getCEA708At(int pos) {
-        return cea708[(front + pos) % MAX_REFERENCE_FRAMES];
+        return cea708Data[(front + pos) % MAX_REFERENCE_FRAMES];
     }
 }

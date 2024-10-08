@@ -28,7 +28,7 @@ import ph.extremelogic.libcaption.eia608.Eia608Style;
 import ph.extremelogic.libcaption.constant.LibCaptionStatus;
 import ph.extremelogic.texttrack.utils.Debug;
 
-import static ph.extremelogic.libcaption.constant.Eia608CharmapHeader.EIA608_CHAR_NULL;
+import static ph.extremelogic.libcaption.constant.Eia608CharConstants.EIA608_CHAR_NULL;
 import static ph.extremelogic.libcaption.eia608.Eia608Control.TAB_OFFSET_0;
 import static ph.extremelogic.libcaption.constant.LibCaptionStatus.ERROR;
 import static ph.extremelogic.libcaption.constant.LibCaptionStatus.READY;

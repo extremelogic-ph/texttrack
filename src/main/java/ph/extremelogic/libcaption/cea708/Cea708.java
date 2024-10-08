@@ -46,22 +46,22 @@ public class Cea708 {
     /**
      * Initializes a {@code Cea708Data} object with default values based on CEA-708 standards.
      *
-     * @param cea708 the {@code Cea708Data} object to initialize
+     * @param cea708Data the {@code Cea708Data} object to initialize
      * @param timestamp the timestamp associated with the data
      * @return {@code 1} to indicate successful initialization
      */
-    public static int init(Cea708Data cea708, double timestamp) {
-        cea708.setCountry(ItuT35CountryCode.COUNTRY_UNITED_STATES);
-        cea708.setProvider(ItuTt35ProviderCode.T_35_PROVIDER_ATSC);
-        cea708.setUserIdentifier(0x47413934); // GA94
-        cea708.setUserDataTypeCode((byte) 3);
-        cea708.setDirectvUserDataLength((byte) 0);
-        cea708.getUserData().setProcessEmDataFlag(false);
-        cea708.getUserData().setProcessCcDataFlag(true);
-        cea708.getUserData().setAdditionalDataFlag(false);
-        cea708.getUserData().setEmData(0xFF);
-        cea708.getUserData().setCcCount(0);
-        cea708.setTimestamp(timestamp);
+    public static int init(Cea708Data cea708Data, double timestamp) {
+        cea708Data.setCountry(ItuT35CountryCode.COUNTRY_UNITED_STATES);
+        cea708Data.setProvider(ItuTt35ProviderCode.T_35_PROVIDER_ATSC);
+        cea708Data.setUserIdentifier(0x47413934); // GA94
+        cea708Data.setUserDataTypeCode((byte) 3);
+        cea708Data.setDirectvUserDataLength((byte) 0);
+        cea708Data.getUserData().setProcessEmDataFlag(false);
+        cea708Data.getUserData().setProcessCcDataFlag(true);
+        cea708Data.getUserData().setAdditionalDataFlag(false);
+        cea708Data.getUserData().setEmData(0xFF);
+        cea708Data.getUserData().setCcCount(0);
+        cea708Data.setTimestamp(timestamp);
         return 1;
     }
 
@@ -74,7 +74,7 @@ public class Cea708 {
      * @param userData the {@code UserData} object to populate
      * @return the populated {@code UserData} object
      */
-    public static UserData parseUserDataTypeStructure(byte[] data, int size, UserData userData) {
+    private static UserData parseUserDataTypeStructure(byte[] data, int size, UserData userData) {
         //  Debug.print("cea708_parse_user_data_type_strcture <<<<<<<<<<<<<<<<<<<<");
 
         userData.setProcessEmDataFlag((data[0] & 0x80) != 0);
@@ -100,11 +100,11 @@ public class Cea708 {
      *
      * @param data the byte array containing the H.264 video stream data
      * @param size the size of the data in bytes
-     * @param cea708 the {@code Cea708Data} object to populate
+     * @param cea708Data the {@code Cea708Data} object to populate
      * @param index an index value for tracking
      * @return the status of the parsing operation, represented as a {@code LibCaptionStatus}
      */
-    public static LibCaptionStatus parseH264(byte[] data, int size, Cea708Data cea708, int index) {
+    public static LibCaptionStatus parseH264(byte[] data, int size, Cea708Data cea708Data, int index) {
         Debug.print("cea708_parse_h264 [START] <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         printDataArray(data, data.length);
 
@@ -114,60 +114,57 @@ public class Cea708 {
 
         Debug.print("  country: " + (data[0] & 0xFF));
         Debug.print("  provider: " + ((data[1] << 8) | (data[2] & 0xFF)));
-        cea708.setCountry(ItuT35CountryCode.fromValue(data[0] & 0xFF));
-        cea708.setProvider(ItuTt35ProviderCode.fromValue((data[1] << 8) | (data[2] & 0xFF)));
-        cea708.setUserIdentifier(0);
-        cea708.setUserDataTypeCode((byte) 0);
-        //System.arraycopy(data, 3, data, 0, size - 3);
+        cea708Data.setCountry(ItuT35CountryCode.fromValue(data[0] & 0xFF));
+        cea708Data.setProvider(ItuTt35ProviderCode.fromValue((data[1] << 8) | (data[2] & 0xFF)));
+        cea708Data.setUserIdentifier(0);
+        cea708Data.setUserDataTypeCode((byte) 0);
+
         int offset = 3;
-        //size -= 3;
+
         Debug.print("  data[0]: " + (data[offset + 0] & 0xFF));
         Debug.print("  data[1]: " + (data[offset + 1] & 0xFF));
         Debug.print("  data[2]: " + (data[offset + 2] & 0xFF));
 
-        //  Debug.print("  country: " + cea708.country);
-        //  Debug.print("  provider: " + cea708.provider);
-
-        if (cea708.getProvider() == ItuTt35ProviderCode.T_35_PROVIDER_ATSC) {
+        if (cea708Data.getProvider() == ItuTt35ProviderCode.T_35_PROVIDER_ATSC) {
             System.out.println("" + size + " - < 4");
             if (size - offset < 4) {
                 return LibCaptionStatus.ERROR;
             }
 
-            cea708.setUserIdentifier(((data[offset] << 24) | (data[offset + 1] << 16) | (data[offset + 2] << 8) | data[offset + 3]));
-            Debug.print("user identifier: " + cea708.getUserIdentifier());
+            cea708Data.setUserIdentifier(((data[offset] << 24) | (data[offset + 1] << 16) | (data[offset + 2] << 8) | data[offset + 3]));
+            Debug.print("user identifier: " + cea708Data.getUserIdentifier());
             offset += 4;
         }
 
-        if (cea708.getProvider() == ItuTt35ProviderCode.T_35_PROVIDER_DIRECT_TV || cea708.getProvider() == ItuTt35ProviderCode.T_35_PROVIDER_ATSC) {
+        if (cea708Data.getProvider() == ItuTt35ProviderCode.T_35_PROVIDER_DIRECT_TV || cea708Data.getProvider() == ItuTt35ProviderCode.T_35_PROVIDER_ATSC) {
             if (size - offset < 1) {
                 return LibCaptionStatus.ERROR;
             }
-            cea708.setUserDataTypeCode(data[offset]);
-            Debug.print("user data type code: " + cea708.getUserDataTypeCode());
+            cea708Data.setUserDataTypeCode(data[offset]);
+            Debug.print("user data type code: " + cea708Data.getUserDataTypeCode());
             offset += 1;
         }
 
-        if (cea708.getProvider() == ItuTt35ProviderCode.T_35_PROVIDER_DIRECT_TV) {
+        if (cea708Data.getProvider() == ItuTt35ProviderCode.T_35_PROVIDER_DIRECT_TV) {
             if (size - offset < 1) {
                 return LibCaptionStatus.ERROR;
             }
-            cea708.setDirectvUserDataLength(data[offset]);
-            Debug.print("user data length: " + cea708.getDirectvUserDataLength());
+            cea708Data.setDirectvUserDataLength(data[offset]);
+            Debug.print("user data length: " + cea708Data.getDirectvUserDataLength());
             offset += 1;
         }
 
-        if (cea708.getUserDataTypeCode() == 3 && size - offset >= 2) {
+        if (cea708Data.getUserDataTypeCode() == 3 && size - offset >= 2) {
             data = Arrays.copyOfRange(data, offset, data.length);
             Debug.print("cea708_parse_user_data_type_strcture before");
             printDataArray(data, data.length);
-            UserData userData = parseUserDataTypeStructure(data, data.length, cea708.getUserData());
-            cea708.setUserData(userData);
+            UserData userData = parseUserDataTypeStructure(data, data.length, cea708Data.getUserData());
+            cea708Data.setUserData(userData);
             Debug.print("cea708_parse_user_data_type_strcture result");
             printDataArray(data, data.length);
-        } else if (cea708.getUserDataTypeCode() == 4) {
+        } else if (cea708Data.getUserDataTypeCode() == 4) {
             // handle additional CEA-608 data
-        } else if (cea708.getUserDataTypeCode() == 5) {
+        } else if (cea708Data.getUserDataTypeCode() == 5) {
             // handle luma PAM data
         } else {
             // handle ATSC reserved user data
@@ -179,20 +176,20 @@ public class Cea708 {
      * Converts parsed CEA-708 data into a {@code CaptionFrame}, handling valid CC data.
      *
      * @param frame the {@code CaptionFrame} object to populate
-     * @param cea708 the {@code Cea708Data} containing the parsed data
+     * @param cea708Data the {@code Cea708Data} containing the parsed data
      * @return the status of the operation, represented as a {@code LibCaptionStatus}
      */
-    public static LibCaptionStatus toCaptionFrame(CaptionFrame frame, Cea708Data cea708) {
-        int count = cea708.getUserData().getCcCount();
+    public static LibCaptionStatus toCaptionFrame(CaptionFrame frame, Cea708Data cea708Data) {
+        int count = cea708Data.getUserData().getCcCount();
         LibCaptionStatus status = LibCaptionStatus.OK;
 
         for (int i = 0; i < count; i++) {
-            boolean valid = cea708.getUserData().getCcData()[i].isCcValid();
-            CcType type = cea708.getUserData().getCcData()[i].getCcType();
-            int ccData = cea708.getUserData().getCcData()[i].getCcData();
+            boolean valid = cea708Data.getUserData().getCcData()[i].isCcValid();
+            CcType type = cea708Data.getUserData().getCcData()[i].getCcType();
+            int ccData = cea708Data.getUserData().getCcData()[i].getCcData();
 
             if (valid && type == CcType.NTSC_CC_FIELD_1) {
-                status = frame.decode(ccData, cea708.getTimestamp());
+                status = frame.decode(ccData, cea708Data.getTimestamp());
             }
         }
 
