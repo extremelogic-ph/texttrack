@@ -21,15 +21,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package ph.extremelogic.libcaption.utf8;
+package ph.extremelogic.libcaption;
 
-/**
- * utf.c
- */
-public class utf8_c {
+public class Utf8 {
+    public static final int UFTF_DEFAULT_MAX_FILE_SIZE = 50 * 1024 * 1024;
+
+    private Utf8() {
+        // Prevent instantiation
+    }
 
     // returns the length of the char in bytes
-    public static int utf8_char_length(byte[] c) {
+    public static int utf8CharLength(byte[] c) {
         if (c == null || c.length == 0 || c[0] == 0) {
             return 0;
         }
@@ -43,7 +45,7 @@ public class utf8_c {
     }
 
     // returns true if the first character is whitespace
-    public static boolean utf8_char_whitespace(byte[] c) {
+    public static boolean utf8CharWhitespace(byte[] c) {
         if (c == null || c.length == 0) {
             return false;
         }
@@ -54,16 +56,12 @@ public class utf8_c {
         }
 
         // EIA608_CHAR_NO_BREAK_SPACE
-        if (c.length >= 2 && (c[0] & 0xFF) == 0xC2 && (c[1] & 0xFF) == 0xA0) {
-            return true;
-        }
-
-        return false;
+        return c.length >= 2 && (c[0] & 0xFF) == 0xC2 && (c[1] & 0xFF) == 0xA0;
     }
 
     // copies a UTF-8 character
-    public static int utf8_char_copy(byte[] dst, byte[] src) {
-        int bytes = utf8_char_length(src);
+    public static int utf8CharCopy(byte[] dst, byte[] src) {
+        int bytes = utf8CharLength(src);
 
         if (bytes > 0 && dst != null && dst.length >= bytes) {
             System.arraycopy(src, 0, dst, 0, bytes);

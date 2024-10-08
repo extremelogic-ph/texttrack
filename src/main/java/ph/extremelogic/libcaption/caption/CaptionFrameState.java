@@ -21,25 +21,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package ph.extremelogic.libcaption.ts;
+package ph.extremelogic.libcaption.caption;
 
-import ph.extremelogic.libcaption.ts.ts_t;
+import lombok.Data;
 
 /**
- * ts.h
+ * Represents the state of a caption frame, including formatting and positional
+ * information such as underline, style, roll-up count, row, and column.
  */
-public class ts_header {
-    public static final int TS_PACKET_SIZE = 188;
+@Data
+public class CaptionFrameState {
+    /**
+     * Indicates whether the text is underlined (1 for underline, 0 for no underline).
+     */
+    private int underline;
 
-    public double ts_dts_seconds(ts_t ts) {
-        return (double) ts.dts / 90000.0;
-    }
+    /**
+     * Represents the style of the text (e.g., font, size, or color).
+     */
+    private int style;
 
-    public double ts_pts_seconds(ts_t ts) {
-        return (double) ts.pts / 90000.0;
-    }
+    /**
+     * Specifies the number of rows to roll up in roll-up mode captions.
+     */
+    private int rollUpCount;
 
-    public double ts_cts_seconds(ts_t ts) {
-        return ((double) ts.pts - ts.dts) / 90000.0;
-    }
+    /**
+     * Represents the current row position of the caption within the frame.
+     */
+    private int row;
+
+    /**
+     * Represents the current column position of the caption within the frame.
+     */
+    private int col;
+
+    /**
+     * Holds the raw closed caption data (CC Data) for processing.
+     */
+    private int ccData;
 }

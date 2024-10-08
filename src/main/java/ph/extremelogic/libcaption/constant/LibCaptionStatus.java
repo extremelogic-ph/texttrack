@@ -21,24 +21,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package ph.extremelogic.libcaption.ts;
+package ph.extremelogic.libcaption.constant;
 
-public class ts_t {
-    public short pmtpid; // int16_t
-    public short ccpid; // int16_t
-    public short stream_type; // int16_t
-    public long pts; // int64_t
-    public long dts; // int64_t
-    public int size; // size_t
-    public byte[] data; // const uint8_t* data
+/**
+ * The {@code LibCaptionStatus} enum represents the possible statuses for caption processing.
+ * It is used to indicate the state of an operation within the caption processing system.
+ */
+public enum LibCaptionStatus {
+    /**
+     * Indicates that an error has occurred during the caption processing operation.
+     */
+    ERROR,
 
-    public ts_t() {
-        this.pmtpid = 0;
-        this.ccpid = 0;
-        this.stream_type = 0;
-        this.pts = 0;
-        this.dts = 0;
-        this.size = 0;
-        this.data = null;
-    }
+    /**
+     * Indicates that the caption processing operation was successful.
+     */
+    OK,
+
+    /**
+     * Indicates that the system is ready to proceed with the caption processing operation.
+     */
+    READY;
 }

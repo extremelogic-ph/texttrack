@@ -26,11 +26,7 @@ package ph.extremelogic.libcaption.eia608;
 import java.util.HashMap;
 import java.util.Map;
 
-public class eia608_c {
-
-    // Row and reverse row mappings
-    public static final int[] EIA608_ROW_MAP = {10, -1, 0, 1, 2, 3, 11, 12, 13, 14, 4, 5, 6, 7, 8, 9};
-    public static final int[] EIA608_REVERSE_ROW_MAP = {2, 3, 4, 5, 10, 11, 12, 13, 14, 15, 0, 6, 7, 8, 9, 1};
+public class Eia608 {
 
     // Style map for visual representation
     public static final String[] EIA608_STYLE_MAP = {
@@ -215,40 +211,43 @@ public class eia608_c {
         put(174, "\u2514"); // BOX_DRAWINGS_LIGHT_UP_AND_RIGHT
         put(175, "\u2518"); // BOX_DRAWINGS_LIGHT_UP_AND_LEFT
     }};
+    // Row and reverse row mappings
+    private static final int[] EIA608_ROW_MAP = {10, -1, 0, 1, 2, 3, 11, 12, 13, 14, 4, 5, 6, 7, 8, 9};
+    private static final int[] EIA608_REVERSE_ROW_MAP = {2, 3, 4, 5, 10, 11, 12, 13, 14, 15, 0, 6, 7, 8, 9, 1};
 
     // Inline method for row pramble
-    private static int eia608_row_preamble(int row, int chan, int x, boolean underline) {
+    private static int eia608RowPreamble(int row, int chan, int x, boolean underline) {
         row = EIA608_REVERSE_ROW_MAP[row & 0x0F];
-        return eia608_parity(0x1040 | (chan != 0 ? 0x0800 : 0x0000) | ((row << 7) & 0x0700) | ((row << 5) & 0x0020)) |
+        return eia608Parity(0x1040 | (chan != 0 ? 0x0800 : 0x0000) | ((row << 7) & 0x0700) | ((row << 5) & 0x0020)) |
                 ((x << 1) & 0x001E) | (underline ? 0x0001 : 0x0000);
     }
 
     // Row and column pramble
-    public static int eia608_row_column_preamble(int row, int col, int chan, boolean underline) {
-        return eia608_row_preamble(row, chan, 0x10 | (col / 4), underline);
+    public static int eia608RowColumnPreamble(int row, int col, int chan, boolean underline) {
+        return eia608RowPreamble(row, chan, 0x10 | (col / 4), underline);
     }
 
     // Row and style pramble
-    public static int eia608_row_style_preamble(int row, int chan, eia608_header.eia608_style_t style, boolean underline) {
-        return eia608_row_preamble(row, chan, style.getValue(), underline);
+    public static int eia608RowStylePreamble(int row, int chan, Eia608Style style, boolean underline) {
+        return eia608RowPreamble(row, chan, style.getValue(), underline);
     }
 
     // Midrow change
-    public static int eia608_midrow_change(int chan, eia608_header.eia608_style_t style, boolean underline) {
-        return eia608_parity(0x1120 | ((chan << 11) & 0x0800) | ((style.getValue() << 1) & 0x000E) | (underline ? 0x0001 : 0));
+    public static int eia608MidrowChange(int chan, Eia608Style style, boolean underline) {
+        return eia608Parity(0x1120 | ((chan << 11) & 0x0800) | ((style.getValue() << 1) & 0x000E) | (underline ? 0x0001 : 0));
     }
 
     // Parse preamble
-    public static boolean eia608_parse_preamble(int ccData, int[] row, int[] col, eia608_header.eia608_style_t[] style, int[] chan, int[] underline) {
+    public static boolean eia608ParsePreamble(int ccData, int[] row, int[] col, Eia608Style[] style, int[] chan, int[] underline) {
         row[0] = EIA608_ROW_MAP[((0x0700 & ccData) >> 7) | ((0x0020 & ccData) >> 5)];
         chan[0] = (0x0800 & ccData) != 0 ? 1 : 0;
         underline[0] = (0x0001 & ccData) != 0 ? 1 : 0;
 
         if ((0x0010 & ccData) != 0) {
-            style[0] = eia608_header.eia608_style_t.WHITE;
+            style[0] = Eia608Style.WHITE;
             col[0] = 4 * ((0x000E & ccData) >> 1);
         } else {
-            style[0] = eia608_header.eia608_style_t.values()[(0x000E & ccData) >> 1];
+            style[0] = Eia608Style.values()[(0x000E & ccData) >> 1];
             col[0] = 0;
         }
 
@@ -256,11 +255,11 @@ public class eia608_c {
     }
 
     // Parse midrow change
-    public static boolean eia608_parse_midrow_change(int ccData, int[] chan, eia608_header.eia608_style_t[] style, boolean[] underline) {
+    public static boolean eia608ParseMidrowChange(int ccData, int[] chan, Eia608Style[] style, boolean[] underline) {
         chan[0] = (0x0800 & ccData) != 0 ? 1 : 0;
 
         if ((0x1120 & ccData) == (0x7770 & ccData)) {
-            style[0] = eia608_header.eia608_style_t.values()[(0x000E & ccData) >> 1];
+            style[0] = Eia608Style.values()[(0x000E & ccData) >> 1];
             underline[0] = (0x0001 & ccData) != 0;
         }
 
@@ -268,38 +267,38 @@ public class eia608_c {
     }
 
     // Parse control command
-    public static eia608_header.eia608_control_t eia608_parse_control(int ccData, int[] cc) {
-     //   Debug.print("eia608_parse_control: " + ccData);
+    public static Eia608Control eia608ParseControl(int ccData, int[] cc) {
+        //   Debug.print("eia608_parse_control: " + ccData);
         if ((0x0200 & ccData) != 0) {
             cc[0] = (ccData & 0x0800) != 0 ? 1 : 0;
-            return eia608_header.eia608_control_t.fromInt(0x177F & ccData);
+            return Eia608Control.fromInt(0x177F & ccData);
         } else {
             // Wrap the bitwise OR operation in parentheses to ensure proper precedence
             cc[0] = ((ccData & 0x0800) != 0 ? 1 : 0) | ((ccData & 0x0100) != 0 ? 2 : 0);
-            return eia608_header.eia608_control_t.fromInt(0x167F & ccData);
+            return Eia608Control.fromInt(0x167F & ccData);
         }
     }
 
     // Control command
-    public static int eia608_control_command(eia608_header.eia608_control_t cmd, int cc) {
+    public static int eia608ControlCommand(Eia608Control cmd, int cc) {
         int c = (cc & 0x01) != 0 ? 0x0800 : 0x0000;
         int f = (cc & 0x02) != 0 ? 0x0100 : 0x0000;
 
-        if (cmd == eia608_header.eia608_control_t.TAB_OFFSET_0) {
-            return eia608_parity(cmd.getValue() | c);
+        if (cmd == Eia608Control.TAB_OFFSET_0) {
+            return eia608Parity(cmd.getValue() | c);
         } else {
-            return eia608_parity(cmd.getValue() | c | f);
+            return eia608Parity(cmd.getValue() | c | f);
         }
     }
 
     // Text handling functions
-    public static int eia608_to_index(int ccData, int[] chan, int[] c1, int[] c2) {
+    public static int eia608ToIndex(int ccData, int[] chan, int[] c1, int[] c2) {
         c1[0] = -1;
         c2[0] = -1;
         chan[0] = 0;
         ccData &= 0x7F7F; // strip off parity bits
 
-        if (eia608_header.eia608_is_basicna(ccData)) {
+        if (Eia608Decoder.eia608IsBasicna(ccData)) {
             c1[0] = (ccData >> 8) - 0x20;
             ccData &= 0x00FF;
 
@@ -314,7 +313,7 @@ public class eia608_c {
         chan[0] = (ccData & 0x0800) != 0 ? 1 : 0;
         ccData &= 0xF7FF;
 
-        if (eia608_header.eia608_is_specialna(ccData)) {
+        if (Eia608Decoder.eia608IsSpecialna(ccData)) {
             c1[0] = ccData - 0x1130 + 0x60;
             return 1;
         }
@@ -333,21 +332,21 @@ public class eia608_c {
     }
 
     // Mapping from index to UTF-8 char
-    public static String utf8_from_index(int idx) {
+    public static String utf8FromIndex(int idx) {
         return (0 <= idx && idx < EIA608_CHAR_MAP.size()) ? EIA608_CHAR_MAP.get(idx) : "";
     }
 
     // Convert to UTF-8
-    public static int eia608_to_utf8(int ccData, int[] chan, String[] str1, String[] str2) {
+    public static int eia608ToUtf8(int ccData, int[] chan, String[] str1, String[] str2) {
         int[] c1 = new int[1], c2 = new int[1];
-        int size = eia608_to_index(ccData, chan, c1, c2);
-        str1[0] = utf8_from_index(c1[0]);
-        str2[0] = utf8_from_index(c2[0]);
+        int size = eia608ToIndex(ccData, chan, c1, c2);
+        str1[0] = utf8FromIndex(c1[0]);
+        str2[0] = utf8FromIndex(c2[0]);
         return size;
     }
 
     // Parity function (placeholder, assuming you have it in eia608_header)
-    private static int eia608_parity(int ccData) {
-        return eia608_header.eia608_parity(ccData);
+    private static int eia608Parity(int ccData) {
+        return Eia608Decoder.eia608Parity(ccData);
     }
 }

@@ -6,6 +6,9 @@ import java.util.List;
 import static java.lang.System.arraycopy;
 
 public class ArrayUtil {
+    private ArrayUtil() {
+        // Prevent instantiation
+    }
 
     public static <T> void shiftRight1(T[] array) {
         for (int i = 1; i < array.length; i++) {
@@ -53,7 +56,7 @@ public class ArrayUtil {
         shiftRight3(array, 0, to);
     }
 
-    public static final void swap(int[] arr, int ind1, int ind2) {
+    public static void swap(int[] arr, int ind1, int ind2) {
         if (ind1 == ind2)
             return;
         int tmp = arr[ind1];
@@ -61,7 +64,7 @@ public class ArrayUtil {
         arr[ind2] = tmp;
     }
 
-    public static final int sumInt(int[] array) {
+    public static int sumInt(int[] array) {
         int result = 0;
         for (int i = 0; i < array.length; i++) {
             result += array[i];
@@ -71,8 +74,8 @@ public class ArrayUtil {
 
     public static final int sumByte(byte[] array) {
         int result = 0;
-        for (int i = 0; i < array.length; i++) {
-            result += array[i];
+        for (byte b : array) {
+            result += b;
         }
         return result;
     }
@@ -139,21 +142,21 @@ public class ArrayUtil {
         if (array == null) {
             return null;
         }
-        return (int[]) array.clone();
+        return array.clone();
     }
 
     public static long[] cloneLong(long[] array) {
         if (array == null) {
             return null;
         }
-        return (long[]) array.clone();
+        return array.clone();
     }
 
     public static Object[] cloneObj(Object[] array) {
         if (array == null) {
             return null;
         }
-        return (Object[]) array.clone();
+        return array.clone();
     }
 
     public static byte[] toByteArrayShifted(int[] array) {
@@ -382,42 +385,40 @@ public class ArrayUtil {
     }
 
     public static void copy1D(int[] to, int[] from) {
-        for (int i = 0; i < Math.min(to.length, from.length); i++) {
-            to[i] = from[i];
-        }
+        System.arraycopy(from, 0, to, 0, Math.min(to.length, from.length));
     }
 
     public static int fill6D(int[][][][][][] to, int[] from, int index) {
-        for (int i = 0; i < to.length; i++) {
-            index = fill5D(to[i], from, index);
+        for (int[][][][][] ints : to) {
+            index = fill5D(ints, from, index);
         }
         return index;
     }
 
     public static int fill5D(int[][][][][] to, int[] from, int index) {
-        for (int i = 0; i < to.length; i++) {
-            index = fill4D(to[i], from, index);
+        for (int[][][][] ints : to) {
+            index = fill4D(ints, from, index);
         }
         return index;
     }
 
     public static int fill4D(int[][][][] to, int[] from, int index) {
-        for (int i = 0; i < to.length; i++) {
-            index = fill3D(to[i], from, index);
+        for (int[][][] ints : to) {
+            index = fill3D(ints, from, index);
         }
         return index;
     }
 
     public static int fill3D(int[][][] to, int[] from, int index) {
-        for (int i = 0; i < to.length; i++) {
-            index = fill2D(to[i], from, index);
+        for (int[][] ints : to) {
+            index = fill2D(ints, from, index);
         }
         return index;
     }
 
     public static int fill2D(int[][] to, int[] from, int index) {
-        for (int i = 0; i < to.length; i++) {
-            index = fill1D(to[i], from, index);
+        for (int[] ints : to) {
+            index = fill1D(ints, from, index);
         }
         return index;
     }
@@ -430,36 +431,36 @@ public class ArrayUtil {
     }
 
     public static int fill6D(short[][][][][][] to, short[] from, int index) {
-        for (int i = 0; i < to.length; i++) {
-            index = fill5D(to[i], from, index);
+        for (short[][][][][] shorts : to) {
+            index = fill5D(shorts, from, index);
         }
         return index;
     }
 
     public static int fill5D(short[][][][][] to, short[] from, int index) {
-        for (int i = 0; i < to.length; i++) {
-            index = fill4D(to[i], from, index);
+        for (short[][][][] shorts : to) {
+            index = fill4D(shorts, from, index);
         }
         return index;
     }
 
     public static int fill4D(short[][][][] to, short[] from, int index) {
-        for (int i = 0; i < to.length; i++) {
-            index = fill3D(to[i], from, index);
+        for (short[][][] shorts : to) {
+            index = fill3D(shorts, from, index);
         }
         return index;
     }
 
     public static int fill3D(short[][][] to, short[] from, int index) {
-        for (int i = 0; i < to.length; i++) {
-            index = fill2D(to[i], from, index);
+        for (short[][] shorts : to) {
+            index = fill2D(shorts, from, index);
         }
         return index;
     }
 
     public static int fill2D(short[][] to, short[] from, int index) {
-        for (int i = 0; i < to.length; i++) {
-            index = fill1D(to[i], from, index);
+        for (short[] shorts : to) {
+            index = fill1D(shorts, from, index);
         }
         return index;
     }
@@ -509,5 +510,20 @@ public class ArrayUtil {
             count++;
         }
         return count;
+    }
+
+    // Helper method to concatenate arrays in Java
+    public static int[] concatenate(int[]... arrays) {
+        int totalLength = 0;
+        for (int[] array : arrays) {
+            totalLength += array.length;
+        }
+        int[] result = new int[totalLength];
+        int offset = 0;
+        for (int[] array : arrays) {
+            arraycopy(array, 0, result, offset, array.length);
+            offset += array.length;
+        }
+        return result;
     }
 }

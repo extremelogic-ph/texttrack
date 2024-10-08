@@ -21,18 +21,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package ph.extremelogic.libcaption.mpeg;
+package ph.extremelogic.libcaption;
 
-import ph.extremelogic.libcaption.caption.caption_c;
-import ph.extremelogic.libcaption.caption.caption_header;
-import ph.extremelogic.libcaption.cea708.cea708_c;
-import ph.extremelogic.libcaption.cea708.cea708_header;
+import ph.extremelogic.libcaption.caption.CaptionFrame;
+import ph.extremelogic.libcaption.cea708.Cea708;
+import ph.extremelogic.libcaption.constant.LibCaptionStatus;
+import ph.extremelogic.libcaption.constant.SeiMessageType;
+import ph.extremelogic.libcaption.cea708.Cea708Data;
+import ph.extremelogic.libcaption.model.MpegBitStream;
+import ph.extremelogic.libcaption.model.Sei;
+import ph.extremelogic.libcaption.model.SeiMessage;
 import ph.extremelogic.texttrack.utils.ArrayUtil;
 import ph.extremelogic.texttrack.utils.Debug;
 
 import java.util.Arrays;
 
-public class mpeg_c {
+public class Mpeg {
     // Constants
     public static final int STREAM_TYPE_H262 = 0x02;
     public static final int STREAM_TYPE_H264 = 0x1B;
@@ -44,7 +48,7 @@ public class mpeg_c {
     public static final int MAX_REFERENCE_FRAMES = 64;
 
     // Utility methods
-    public static int find_emulation_prevention_byte(byte[] data, int size) {
+    public static int findEmulationPreventionByte(byte[] data, int size) {
         int offset = 2;
 
         Debug.print("DEBUG " + size + " _find_emulation_prevention_byte input: ");
@@ -52,7 +56,7 @@ public class mpeg_c {
         if (size > data.length) {
             // size = data.length;
         }
-        printDataArray(data, size);
+        Debug.printDataArray(data, size);
 
         while (offset < size) {
             int currentByte = data[offset] & 0xFF;
@@ -88,11 +92,11 @@ public class mpeg_c {
         return size;
     }
 
-    private static int copy_to_rbsp(byte[] destData, int destOffset, int destSize, byte[] srcData, int srcOffset, int srcSize) {
+    private static int copyToRbsp(byte[] destData, int destOffset, int destSize, byte[] srcData, int srcOffset, int srcSize) {
         Debug.print("copy_to_rbsp [START] <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-     //   Debug.print(" - destOffset: " + destOffset);
+        //   Debug.print(" - destOffset: " + destOffset);
         Debug.print(" - destSize: " + destSize);
-       // Debug.print(" - srcOffset: " + srcOffset);
+        // Debug.print(" - srcOffset: " + srcOffset);
         Debug.print(" - sorcSize: " + srcSize);
 //        printDataArray(destData, destData.length);
 //        printDataArray(srcData, srcData.length);
@@ -104,11 +108,8 @@ public class mpeg_c {
                 return 0;
             }
 
-            toCopy = find_emulation_prevention_byte(srcData, destSize);
+            toCopy = findEmulationPreventionByte(srcData, destSize);
             Debug.print("    DEBUG " + loop++ + " bytes to copy: " + toCopy);
-            //if (true) {
-            //    return 0;
-            //}
             System.arraycopy(srcData, srcOffset - 2, destData, destOffset, toCopy);
 //            printDataArray(destData, destSize);
             totalSize += toCopy;
@@ -124,19 +125,9 @@ public class mpeg_c {
             srcOffset += toCopy + 1;
             srcSize -= toCopy + 1;
         }
-        ///////////////////
     }
 
-    public static void printDataArray(byte[] data, int size) {
-        if (size > 200) return;
-        Debug.print("Data array: [", true);
-        for (int i = 0; i < size; i++) {
-            Debug.print(String.format("%02X ", data[i] & 0xFF), true);
-        }
-        Debug.print("] SIZE: " + size, false);
-    }
-
-    public static caption_header.libcaption_stauts_t sei_parse(mpeg_header.sei_t sei, byte[] data, int size, double timestamp, int index) {
+    public static LibCaptionStatus seiParse(Sei sei, byte[] data, int size, double timestamp, int index) {
         Debug.print("DEBUG sei_parse");
         sei.init(timestamp);
         int ret = 0;
@@ -146,7 +137,7 @@ public class mpeg_c {
         while (size > 1) {
             int payloadType = 0;
             int payloadSize = 0;
-            printDataArray(data, size);
+            Debug.printDataArray(data, size);
 
             // Read payloadType
             while (size > 0 && (data[dataOffset] & 0xFF) == 255) {
@@ -155,10 +146,10 @@ public class mpeg_c {
                 size--;
             }
             Debug.print("DEBUG A payload type: " + payloadSize + " size " + size);
-            printDataArray(data, size);
+            Debug.printDataArray(data, size);
 
             if (size == 0) {
-                return caption_header.libcaption_stauts_t.LIBCAPTION_ERROR;
+                return LibCaptionStatus.ERROR;
             }
 
             payloadType += (data[dataOffset] & 0xFF);
@@ -166,7 +157,7 @@ public class mpeg_c {
             data = ArrayUtil.shiftLeftAndShrink(data);
             size--;
             Debug.print("DEBUG B payload type: " + payloadSize + " size " + size);
-            printDataArray(data, size);
+            Debug.printDataArray(data, size);
 
             // Read payloadSize
             while (size > 0 && (data[dataOffset] & 0xFF) == 255) {
@@ -176,10 +167,10 @@ public class mpeg_c {
                 size--;
             }
             Debug.print("DEBUG C payload type: " + payloadSize + " size " + size);
-            printDataArray(data, size);
+            Debug.printDataArray(data, size);
 
             if (size == 0) {
-                return caption_header.libcaption_stauts_t.LIBCAPTION_ERROR;
+                return LibCaptionStatus.ERROR;
             }
 
             payloadSize += (data[dataOffset - 1] & 0xFF);
@@ -187,31 +178,31 @@ public class mpeg_c {
             data = ArrayUtil.shiftLeftAndShrink(data);
             size--;
             Debug.print("DEBUG D payload type: " + payloadSize + " size " + size);
-            printDataArray(data, size);
+            Debug.printDataArray(data, size);
 
             Debug.print("payload size " + payloadSize);
 
             if (payloadSize > 0) {
                 // Create new sei_message_t
-                mpeg_header.sei_message_t msg = new mpeg_header.sei_message_t();
-                msg.next = null;
-                msg.type = mpeg_header.sei_msgtype_t.fromValue(payloadType);
-                msg.size = payloadSize;
-                Debug.print("payload type " + msg.type.getValue());
-                Debug.print("payload size " + msg.size);
-                msg.payload = new byte[payloadSize + 0];
+                SeiMessage msg = new SeiMessage();
+                msg.setNext(null);
+                msg.setType(SeiMessageType.fromValue(payloadType));
+                msg.setSize(payloadSize);
+                Debug.print("payload type " + msg.getType().getValue());
+                Debug.print("payload size " + msg.getSize());
+                msg.setPayload(new byte[payloadSize + 0]);
 
                 // Copy data to payload using copy_to_rbsp
-                printDataArray(data, size);
-                int bytes = copy_to_rbsp(msg.payload, 0, payloadSize, data, dataOffset, size);
+                Debug.printDataArray(data, size);
+                int bytes = copyToRbsp(msg.getPayload(), 0, payloadSize, data, dataOffset, size);
                 Debug.print("DEBUG bytes " + bytes);
-                printDataArray(msg.payload, payloadSize);
+                Debug.printDataArray(msg.getPayload(), payloadSize);
                 Debug.print("copy_to_rbsp [END] <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
 
-                sei.messages.add(msg);
+                sei.getMessages().add(msg);
 
                 if (bytes < payloadSize) {
-                    return caption_header.libcaption_stauts_t.LIBCAPTION_ERROR;
+                    return LibCaptionStatus.ERROR;
                 }
 
                 dataOffset += bytes;
@@ -221,15 +212,15 @@ public class mpeg_c {
         }
 
         // There should be one trailing byte, 0x80. But really, we can just ignore that fact.
-        return caption_header.libcaption_stauts_t.LIBCAPTION_OK;
+        return LibCaptionStatus.OK;
     }
 
-    public static int mpeg_bitstream_parse(mpeg_header.mpeg_bitstream_t packet, caption_c.caption_frame_t frame, byte[] data, int size, int streamType, double dts, double cts, int debugindex) {
+    public static int mpegBitStreamParse(MpegBitStream packet, CaptionFrame frame, byte[] data, int size, int streamType, double dts, double cts, int debugindex) {
         Debug.print("mpeg_bitstream_parse");
         Debug.print("MAX_NALU_SIZE: " + MAX_NALU_SIZE);
         Debug.print("packet size: " + packet.size);
         if (MAX_NALU_SIZE <= packet.size) {
-            packet.status = caption_header.libcaption_stauts_t.LIBCAPTION_ERROR;
+            packet.status = LibCaptionStatus.ERROR;
             Debug.print("LIBCAPTION_ERROR");
             return 0;
         }
@@ -240,11 +231,11 @@ public class mpeg_c {
             Debug.print("Consume up to MAX_NALU_SIZE");
         }
 
-        mpeg_header.sei_t seiMsgHolder = new mpeg_header.sei_t(dts + cts);
-        caption_header.libcaption_stauts_t newPacketStatus;
+        Sei seiMsgHolder = new Sei(dts + cts);
+        LibCaptionStatus newPacketStatus;
 
         int headerSize, scpos;
-        packet.status = caption_header.libcaption_stauts_t.LIBCAPTION_OK;
+        packet.status = LibCaptionStatus.OK;
         System.arraycopy(data, 0, packet.data, packet.size, size);
         packet.size += size;
 
@@ -252,11 +243,11 @@ public class mpeg_c {
         int index = 0;
 
         Debug.print("Before loop");
-        while (packet.status == caption_header.libcaption_stauts_t.LIBCAPTION_OK) {
+        while (packet.status == LibCaptionStatus.OK) {
             Debug.print("loop: " + index++);
-            printDataArray(data, size);
+            Debug.printDataArray(data, size);
             Debug.print("packet size: " + packet.size);
-            scpos = find_start_code(packet.data, packet.size);
+            scpos = findStartCode(packet.data, packet.size);
             if (scpos <= headerSize) {
                 break;
             }
@@ -264,29 +255,29 @@ public class mpeg_c {
             if ((packet.size > 4) && ((packet.data[3] & 0x1F) == H264_SEI_PACKET)) {
                 byte[] seiData = Arrays.copyOfRange(packet.data, headerSize, scpos);
                 Debug.print("H264_SEI_PACKET");
-                newPacketStatus = sei_parse(seiMsgHolder, seiData, scpos - headerSize, dts + cts, index);
-                packet.status = caption_header.libcaption_status_update(packet.status, newPacketStatus);
+                newPacketStatus = seiParse(seiMsgHolder, seiData, scpos - headerSize, dts + cts, index);
+                packet.status = CaptionFrame.statusUpdate(packet.status, newPacketStatus);
 
                 int count = 0;
                 int count2 = 0;
 
                 //for (mpeg_header.sei_message_t msg : seiMsgHolder.messages)
                 {
-                    mpeg_header.sei_message_t msg = seiMsgHolder.messages.get(0);
-                    Debug.print("msg type: " + msg.type.getValue());
-                    if (msg != null && msg.type == mpeg_header.sei_msgtype_t.sei_type_user_data_registered_itu_t_t35) {
+                    SeiMessage msg = seiMsgHolder.getMessages().get(0);
+                    Debug.print("msg type: " + msg.getType().getValue());
+                    if (msg != null && msg.getType() == SeiMessageType.SEI_TYPE_USER_DATA_REGISTERED_ITU_T_T_35) {
                         System.out.println("count=" + count++);
 
                         // Emplace back
                         packet.latent++;
-                        cea708_header.cea708_t cea708 = packet.getCEA708At(packet.latent - 1);
+                        Cea708Data cea708 = packet.getCEA708At(packet.latent - 1);
 
                         cea708.init(dts + cts);
 
-                        newPacketStatus = cea708_c.cea708_parse_h264(msg.payload, msg.size, cea708, index);
-                        packet.status = caption_header.libcaption_status_update(packet.status, newPacketStatus);
+                        newPacketStatus = Cea708.parseH264(msg.getPayload(), msg.getSize(), cea708, index);
+                        packet.status = CaptionFrame.statusUpdate(packet.status, newPacketStatus);
 
-                        mpeg_bitstream_cea708_sort(packet);
+                        mpegBitstreamCea708Sort(packet);
 //                        packet.sortCEA708();
 
                         // Loop will terminate on LIBCAPTION_READY
@@ -295,20 +286,20 @@ public class mpeg_c {
                                 System.out.println("Exit packet.latent == 0");
                                 break;
                             }
-                            if (packet.status != caption_header.libcaption_stauts_t.LIBCAPTION_OK) {
+                            if (packet.status != LibCaptionStatus.OK) {
                                 System.out.println("Exit status != LIBCAPTION_OK");
                                 break;
                             }
-                            cea708 = mpeg_bitstream_cea708_at(packet, 0);
-                            Debug.print(String.format("%.6f", cea708.timestamp) + " >= " + String.format("%.6f", dts));
-                            if (cea708.timestamp >= dts) {
+                            cea708 = mpegBitstreamCea708At(packet, 0);
+                            Debug.print(String.format("%.6f", cea708.getTimestamp()) + " >= " + String.format("%.6f", dts));
+                            if (cea708.getTimestamp() >= dts) {
                                 System.out.println("Exit timestamp >= dts");
                                 break;
                             }
                             System.out.println("count2=" + count2++);
 
-                            newPacketStatus = cea708_c.cea708_to_caption_frame(frame, cea708);
-                            packet.status = caption_header.libcaption_status_update(caption_header.libcaption_stauts_t.LIBCAPTION_OK, newPacketStatus);
+                            newPacketStatus = Cea708.toCaptionFrame(frame, cea708);
+                            packet.status = CaptionFrame.statusUpdate(LibCaptionStatus.OK, newPacketStatus);
                             packet.front = (packet.front + 1) % MAX_REFERENCE_FRAMES;
                             packet.latent--;
                         }
@@ -324,12 +315,12 @@ public class mpeg_c {
         return size;
     }
 
-    private static int find_start_code(byte[] data, int size) {
+    private static int findStartCode(byte[] data, int size) {
         int startCode = 0xFFFFFFFF;
         for (int i = 1; i < size; i++) {
             startCode = (startCode << 8) | (data[i] & 0xFF);
             if ((startCode & 0xFFFFFF00) == 0x00000100) {
-                Debug.print("find_start_code !0: " + i  + " " + (startCode & 0xFFFFFFFFL));
+                Debug.print("find_start_code !0: " + i + " " + (startCode & 0xFFFFFFFFL));
                 return i - 3;
             }
         }
@@ -337,31 +328,34 @@ public class mpeg_c {
         return 0;
     }
 
-    private static void mpeg_bitstream_cea708_sort(mpeg_header.mpeg_bitstream_t packet) {
-        // Simple bubble sort for small nearly sorted lists
+    private static void mpegBitstreamCea708Sort(MpegBitStream packet) {
+        // Early exit bubble sort for small nearly sorted lists
         boolean swapped;
-        do {
+        for (int i = 0; i < packet.latent - 1; ++i) {
             swapped = false;
-            for (int i = 1; i < packet.latent; ++i) {
-                int posA = (packet.front + i - 1) % MAX_REFERENCE_FRAMES;
-                int posB = (packet.front + i) % MAX_REFERENCE_FRAMES;
+            for (int j = 1; j < packet.latent - i; ++j) {
+                int posA = (packet.front + j - 1) % MAX_REFERENCE_FRAMES;
+                int posB = (packet.front + j) % MAX_REFERENCE_FRAMES;
 
-                cea708_header.cea708_t a = packet.cea708[posA];
-                cea708_header.cea708_t b = packet.cea708[posB];
+                Cea708Data a = packet.cea708[posA];
+                Cea708Data b = packet.cea708[posB];
 
-                if (a.timestamp > b.timestamp) {
+                if (a.getTimestamp() > b.getTimestamp()) {
                     // Swap a and b in the array
-                    cea708_header.cea708_t temp = packet.cea708[posA];
+                    Cea708Data temp = packet.cea708[posA];
                     packet.cea708[posA] = packet.cea708[posB];
                     packet.cea708[posB] = temp;
 
                     swapped = true;
                 }
             }
-        } while (swapped);
+            // Break early if no swaps are made during the pass
+            if (!swapped) break;
+        }
     }
 
-    private static cea708_header.cea708_t mpeg_bitstream_cea708_at(mpeg_header.mpeg_bitstream_t packet, int pos) {
+
+    private static Cea708Data mpegBitstreamCea708At(MpegBitStream packet, int pos) {
         return packet.cea708[(packet.front + pos) % MAX_REFERENCE_FRAMES];
     }
 }

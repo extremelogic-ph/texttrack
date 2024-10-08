@@ -21,12 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package ph.extremelogic.libcaption.eia608;
+package ph.extremelogic.libcaption.constant;
 
-/**
- * eia608_charmap.c
- */
-public class eia608_charmap_header {
+public class Eia608CharmapHeader {
     public static final int EIA608_CHAR_COUNT = 176;
 
     // Helper char

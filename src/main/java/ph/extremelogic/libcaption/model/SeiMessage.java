@@ -21,28 +21,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package ph.extremelogic.libcaption.caption;
+package ph.extremelogic.libcaption.model;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import ph.extremelogic.libcaption.constant.SeiMessageType;
+
+/**
+ * The {@code SeiMessage} class represents a single SEI (Supplemental Enhancement Information) message
+ * in a video stream. An SEI message contains a type, a payload, and potentially links to the next SEI message.
+ *
+ * This class provides a constructor for initializing a message with a specific type and payload, and it also supports
+ * a default no-argument constructor.
+ */
+@Data
+@NoArgsConstructor
 public class SeiMessage {
-    public static final int SEI_TYPE_USER_DATA_REGISTERED_ITU_T_T35 = 4;
+    /** The size of the SEI message payload in bytes. */
+    private int size;
 
-    private int type;
+    /** The type of SEI message, represented by a {@code SeiMessageType} enum. */
+    private SeiMessageType type;
+
+    /** The payload data of the SEI message, stored as a byte array. */
     private byte[] payload;
 
-    public SeiMessage(int type, byte[] payload) {
+    /** A reference to the next SEI message, enabling the creation of a linked list of SEI messages. */
+    private SeiMessage next;
+
+    /**
+     * Constructs a new {@code SeiMessage} object with the specified type and payload.
+     *
+     * @param type the {@code SeiMessageType} representing the type of SEI message
+     * @param payload the byte array representing the payload data of the SEI message
+     */
+    public SeiMessage(SeiMessageType type, byte[] payload) {
         this.type = type;
         this.payload = payload;
-    }
-
-    public int getType() {
-        return type;
-    }
-
-    public byte[] getPayload() {
-        return payload;
-    }
-
-    public int getSize() {
-        return payload.length;
     }
 }

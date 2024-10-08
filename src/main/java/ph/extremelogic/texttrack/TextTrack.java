@@ -23,65 +23,54 @@
  */
 package ph.extremelogic.texttrack;
 
-import ph.extremelogic.libcaption.caption.caption_c;
-import ph.extremelogic.libcaption.caption.caption_header;
-import ph.extremelogic.libcaption.mpeg.mpeg_header.mpeg_bitstream_t;
-import ph.extremelogic.libcaption.ts.ts_c;
-import ph.extremelogic.libcaption.ts.ts_header;
+import ph.extremelogic.libcaption.TransportSystem;
+import ph.extremelogic.libcaption.caption.CaptionFrame;
+import ph.extremelogic.libcaption.constant.LibCaptionStatus;
+import ph.extremelogic.libcaption.model.MpegBitStream;
 import ph.extremelogic.texttrack.utils.Debug;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Arrays;
 
-import static ph.extremelogic.libcaption.mpeg.mpeg_c.mpeg_bitstream_parse;
-import static ph.extremelogic.libcaption.mpeg.mpeg_header.STREAM_TYPE_H264;
+import static ph.extremelogic.libcaption.Mpeg.STREAM_TYPE_H264;
+import static ph.extremelogic.libcaption.Mpeg.mpegBitStreamParse;
+import static ph.extremelogic.libcaption.TransportSystem.TS_PACKET_SIZE;
 
 public class TextTrack {
-
-    // Exit failure constant
     public static final int EXIT_FAILURE = 1;
-    private static final int TS_PACKET_SIZE = 188;
     public static boolean debug = false;
 
     public static void main(String[] args) {
         String myData = "";
         int index = 0;
-        ts_c ts = new ts_c(); // Equivalent to ts_t
-        ts_header th = new ts_header();
-        mpeg_bitstream_t mpegbs = new mpeg_bitstream_t(); // Equivalent to mpeg_bitstream_t
-        caption_c.caption_frame_t frame = new caption_c.caption_frame_t(); // Equivalent to caption_frame_t
-        byte[] pkt = new byte[TS_PACKET_SIZE]; // Packet data
-
-        ts.ts_init();
-
-        frame.caption_frame_init();
-
-        // TODO implement this
-        //mpegBitstreamInit(mpegbs);
+        TransportSystem ts = new TransportSystem();
+        MpegBitStream mpegbs = new MpegBitStream();
+        CaptionFrame frame = new CaptionFrame();
+        byte[] pkt = new byte[TS_PACKET_SIZE];
 
         String tsFilePath = "./cc_minimum.ts";
         try (FileInputStream fileInputStream = new FileInputStream(tsFilePath)) {
             while (fileInputStream.read(pkt) == TS_PACKET_SIZE) {
                 Debug.print("DEBUG index: " + index++);
-                if (ts.ts_parse_packet(pkt) == caption_header.libcaption_stauts_t.LIBCAPTION_READY.ordinal()) {
-                    double dts = th.ts_dts_seconds(ts.ts); // Parse DTS in seconds
-                    double cts = th.ts_cts_seconds(ts.ts); // Parse CTS in seconds
+                if (ts.parsePacket(pkt) == LibCaptionStatus.READY.ordinal()) {
+                    double dts = ts.dtsSeconds();
+                    double cts = ts.ctsSeconds();
 
                     Debug.print("DEBUG DTS: " + String.format("%.6f", dts) + ", CTS: " + String.format("%.6f", cts));
-                    Debug.print("DEBUG ts.size: " + ts.ts.size);
+                    Debug.print("DEBUG ts.size: " + ts.getSize());
 
-                    while (ts.ts.size > 0) {
-                        int bytesRead = mpeg_bitstream_parse(mpegbs, frame, ts.ts.data, ts.ts.size, STREAM_TYPE_H264, dts, cts, index);
-                        ts.ts.data = Arrays.copyOfRange(ts.ts.data, bytesRead, ts.ts.data.length);
-                        ts.ts.size -= bytesRead;
+                    while (ts.getSize() > 0) {
+                        int bytesRead = mpegBitStreamParse(mpegbs, frame, ts.getData(), ts.getSize(), STREAM_TYPE_H264, dts, cts, index);
+                        ts.setData(Arrays.copyOfRange(ts.getData(), bytesRead, ts.getData().length));
+                        ts.setSize(ts.getSize() - bytesRead);
 
                         switch (mpegbs.status) {
-                            case LIBCAPTION_OK:
+                            case OK:
                                 break;
-                            case LIBCAPTION_READY:
+                            case READY:
                                 System.out.println("-------------------------------");
-                                myData = frame.caption_frame_to_text();
+                                myData = frame.toText();
                                 System.out.println("data:\n" + myData);
                                 break;
                             default:

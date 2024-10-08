@@ -23,9 +23,33 @@
  */
 package ph.extremelogic.libcaption.eia608;
 
-public class eia608_from_utf8 {
+/**
+ * The {@code Eia608FromUtf8} class provides a utility method to convert UTF-8 encoded strings
+ * to EIA-608 encoded integers used for captioning. The conversion maps ASCII and some special
+ * Unicode characters to their corresponding EIA-608 code representations.
+ *
+ * This class contains only static methods and cannot be instantiated.
+ */
+public class Eia608FromUtf8 {
+    /**
+     * Private constructor to prevent instantiation of this utility class.
+     */
+    private Eia608FromUtf8() {
+        // Prevent instantiation
+    }
 
-    public static int eia608_from_utf8(String s) {
+    /**
+     * Converts a UTF-8 encoded string into an EIA-608 encoded integer.
+     * This method processes the first character of the string and returns its corresponding
+     * EIA-608 code based on predefined mappings of ASCII and special Unicode characters.
+     *
+     * @param s the UTF-8 encoded string to convert; if the string is {@code null} or empty,
+     *          the method returns 0x0000.
+     * @return the EIA-608 encoded integer corresponding to the input string's first character,
+     *         or 0x0000 if the string is null or empty, or if the character is not recognized.
+     * @throws IllegalArgumentException if an unsupported or unexpected Unicode character is encountered.
+     */
+    public static int eia608FromUtf8(String s) {
         if (s == null || s.isEmpty()) {
             return 0x0000;
         }
@@ -228,8 +252,5 @@ public class eia608_from_utf8 {
                 }
             }
         }
-
-        // Default return value
-        //return 0x0000;
     }
 }

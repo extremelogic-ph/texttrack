@@ -1,6 +1,7 @@
 package ph.extremelogic.libcaption.mpeg;
 
 import org.junit.jupiter.api.Test;
+import ph.extremelogic.libcaption.Mpeg;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -19,7 +20,7 @@ public class EmulationPreventionByteTest {
         };
         int expectedSize = 68;
 
-        int result = mpeg_c.find_emulation_prevention_byte(data, expectedSize);
+        int result = Mpeg.findEmulationPreventionByte(data, expectedSize);
         assertEquals(expectedSize, result);  // Expected offset based on the input data
 
         byte [] data2 = {
@@ -27,7 +28,7 @@ public class EmulationPreventionByteTest {
         };
         expectedSize = 1;
 
-        result = mpeg_c.find_emulation_prevention_byte(data2, expectedSize);
+        result = Mpeg.findEmulationPreventionByte(data2, expectedSize);
         assertEquals(expectedSize, result);  // Expected offset based on the input data
     }
 }
