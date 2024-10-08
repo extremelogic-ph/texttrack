@@ -6,11 +6,18 @@ texttrack is a Java port of the libcaption library
 - Closed Captions Support: Encode and decode CEA-608/708 closed captions.
 
 ## Contributing
-Contributions are welcome! Please follow these steps:
+
+We welcome contributions from those with expertise in MPEG encoding and decoding. While my primary experience comes from porting the code from C, I’m eager to collaborate with individuals who have in-depth knowledge in this area to improve the project further.
+
+If you're interested in contributing, please follow these steps:
+
 - Fork the repository.
 - Create a new branch for your feature or bug fix.
-- Commit your changes with clear and descriptive messages.
-- Open a pull request detailing your changes.
+- Commit your changes with clear and descriptive commit messages.
+- Open a pull request with a detailed explanation of your changes.
+- Ensure that your contribution includes relevant unit tests to verify functionality.
+
+We appreciate your contributions and look forward to working with you!
 
 ## License
 
