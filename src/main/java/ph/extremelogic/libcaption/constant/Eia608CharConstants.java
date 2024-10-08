@@ -23,7 +23,20 @@
  */
 package ph.extremelogic.libcaption.constant;
 
-public class Eia608CharmapHeader {
+/**
+ * The {@code Eia608CharConstants} class provides constants used for EIA-608 character mapping.
+ * This class includes the total count of EIA-608 characters and defines a null character representation.
+ * The class is not instantiable.
+ */
+public class Eia608CharConstants {
+
+    /**
+     * Private constructor to prevent instantiation of this utility class.
+     * This class is designed to hold constants for EIA-608 character mapping.
+     */
+    private Eia608CharConstants() {
+        // Prevent instantiation
+    }
     public static final int EIA608_CHAR_COUNT = 176;
 
     // Helper char
