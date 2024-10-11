@@ -30,6 +30,6 @@ MIT License for the original C project that this Java port is based on.
 The original MIT license text is included in the LICENSE-MIT file, and the original copyright notice is retained as required.
 
 ## Acknowledgments
-This project is a Java port of the libcaption library by Steven Zaat. The original libcaption project is written in C and provides a comprehensive set of tools for working with caption data.
+This project is a Java port of the libcaption library by Matthew Szatmary. The original libcaption project is written in C and provides a comprehensive set of tools for working with caption data.
 
 We extend our gratitude to the contributors of libcaption for their excellent work, which served as the foundation for this Java implementation.
