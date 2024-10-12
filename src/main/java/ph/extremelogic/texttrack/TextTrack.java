@@ -31,6 +31,7 @@ import ph.extremelogic.texttrack.utils.Debug;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.util.Arrays;
 
 import static ph.extremelogic.libcaption.Mpeg.STREAM_TYPE_H264;
@@ -53,7 +54,8 @@ public class TextTrack {
         try (FileInputStream fileInputStream = new FileInputStream(tsFilePath)) {
             while (fileInputStream.read(pkt) == TS_PACKET_SIZE) {
                 Debug.print("DEBUG index: " + index++);
-                if (ts.parsePacket(pkt) == LibCaptionStatus.READY.ordinal()) {
+                ByteBuffer byteBuffer = ByteBuffer.wrap(pkt);
+                if (ts.parsePacket(byteBuffer) == LibCaptionStatus.READY.ordinal()) {
                     double dts = ts.dtsSeconds();
                     double cts = ts.ctsSeconds();
 

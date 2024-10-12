@@ -110,20 +110,19 @@ public class TransportSystem {
      * @return the status of the parsing operation, represented by the ordinal value of {@code LibCaptionStatus}
      * @throws IllegalArgumentException if the packet size is not equal to {@link #TS_PACKET_SIZE}
      */
-    public int parsePacket(byte[] packetData) {
-        ByteBuffer pData = ByteBuffer.wrap(packetData);
-        if (packetData.length != TS_PACKET_SIZE) {
+    public int parsePacket(ByteBuffer packetData) {
+        if (packetData.limit() != TS_PACKET_SIZE) {
             throw new IllegalArgumentException("Packet size must be " + TS_PACKET_SIZE + " bytes");
         }
 
         int i = 0;
-        boolean pusi = (pData.get(i + 1) & 0x40) != 0; // Payload Unit Start Indicator
+        boolean pusi = (packetData.get(i + 1) & 0x40) != 0; // Payload Unit Start Indicator
         Debug.print("DEBUG pusi: " + (pusi ? 1 : 0));
-        short pid = (short) (((pData.get(i + 1) & 0x1F) << 8) | (pData.get(i + 2) & 0xFF));
+        short pid = (short) (((packetData.get(i + 1) & 0x1F) << 8) | (packetData.get(i + 2) & 0xFF));
         Debug.print("DEBUG pid: " + pid);
-        boolean adaptionPresent = (pData.get(i + 3) & 0x20) != 0;
+        boolean adaptionPresent = (packetData.get(i + 3) & 0x20) != 0;
         Debug.print("DEBUG adaption_present: " + (adaptionPresent ? 1 : 0));
-        boolean payloadPresent = (pData.get(i + 3) & 0x10) != 0;
+        boolean payloadPresent = (packetData.get(i + 3) & 0x10) != 0;
         Debug.print("DEBUG payload_present: " + (payloadPresent ? 1 : 0));
         i += 4;
 
@@ -131,33 +130,33 @@ public class TransportSystem {
         this.size = 0;
 
         if (adaptionPresent) {
-            int adaptionLength = pData.get(i) & 0xFF;
+            int adaptionLength = packetData.get(i) & 0xFF;
             i += 1 + adaptionLength;
             Debug.print("DEBUG adaption_present: " + i);
         }
 
         if (pid == 0) {
             if (payloadPresent) {
-                i += (pData.get(i) & 0xFF) + 1;
+                i += (packetData.get(i) & 0xFF) + 1;
             }
-            this.pmtpId = (short) (((pData.get(i + 10) & 0x1F) << 8) | (pData.get(i + 11) & 0xFF));
+            this.pmtpId = (short) (((packetData.get(i + 10) & 0x1F) << 8) | (packetData.get(i + 11) & 0xFF));
         } else if (pid == this.pmtpId) {
             if (payloadPresent) {
-                i += (pData.get(i) & 0xFF) + 1;
+                i += (packetData.get(i) & 0xFF) + 1;
             }
 
-            int sectionLength = ((pData.get(i + 1) & 0x0F) << 8) | (pData.get(i + 2) & 0xFF);
-            boolean current = (pData.get(i + 5) & 0x01) != 0;
-            int programInfoLength = ((pData.get(i + 10) & 0x0F) << 8) | (pData.get(i + 11) & 0xFF);
+            int sectionLength = ((packetData.get(i + 1) & 0x0F) << 8) | (packetData.get(i + 2) & 0xFF);
+            boolean current = (packetData.get(i + 5) & 0x01) != 0;
+            int programInfoLength = ((packetData.get(i + 10) & 0x0F) << 8) | (packetData.get(i + 11) & 0xFF);
             int descriptorLoopLength = sectionLength - (9 + programInfoLength + 4);
 
             i += 12 + programInfoLength;
 
             if (current) {
                 while (descriptorLoopLength >= 5) {
-                    short streamType = (short) (pData.get(i) & 0xFF);
-                    short elementaryPid = (short) (((pData.get(i + 1) & 0x1F) << 8) | (pData.get(i + 2) & 0xFF));
-                    int esinfoLength = ((pData.get(i + 3) & 0x0F) << 8) | (pData.get(i + 4) & 0xFF);
+                    short streamType = (short) (packetData.get(i) & 0xFF);
+                    short elementaryPid = (short) (((packetData.get(i + 1) & 0x1F) << 8) | (packetData.get(i + 2) & 0xFF));
+                    int esinfoLength = ((packetData.get(i + 3) & 0x0F) << 8) | (packetData.get(i + 4) & 0xFF);
 
                     if (streamType == Mpeg.STREAM_TYPE_H262 || streamType == Mpeg.STREAM_TYPE_H264 || streamType == STREAM_TYPE_H265) {
                         this.ccpId = elementaryPid;
@@ -170,20 +169,20 @@ public class TransportSystem {
             }
         } else if (payloadPresent && pid == this.ccpId) {
             if (pusi) {
-                boolean hasPts = (pData.get(i + 7) & 0x80) != 0;
-                boolean hasDts = (pData.get(i + 7) & 0x40) != 0;
-                int headerLength = pData.get(i + 8) & 0xFF;
+                boolean hasPts = (packetData.get(i + 7) & 0x80) != 0;
+                boolean hasDts = (packetData.get(i + 7) & 0x40) != 0;
+                int headerLength = packetData.get(i + 8) & 0xFF;
 
                 if (hasPts) {
-                    this.pts = parsePts(pData.array(), i + 9);
-                    this.dts = hasDts ? parsePts(pData.array(), i + 14) : this.pts;
+                    this.pts = parsePts(packetData.array(), i + 9);
+                    this.dts = hasDts ? parsePts(packetData.array(), i + 14) : this.pts;
                 }
 
                 i += 9 + headerLength;
             }
 
             this.data = new byte[TS_PACKET_SIZE - i];
-            System.arraycopy(pData.array(), i, this.data, 0, this.data.length);
+            System.arraycopy(packetData.array(), i, this.data, 0, this.data.length);
             this.size = this.data.length;
             Debug.print("DEBUG LIBCAPTION_READY");
             return LibCaptionStatus.READY.ordinal();
