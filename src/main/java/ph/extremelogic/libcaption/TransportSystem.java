@@ -71,16 +71,16 @@ public class TransportSystem {
     /**
      * Parses the Presentation Timestamp (PTS) from the specified byte array at the given offset.
      *
-     * @param data   the byte array containing the transport stream data
+     * @param buffer   the byte buffer containing the transport stream data
      * @param offset the offset in the byte array where the PTS is located
      * @return the parsed PTS as a long value
      */
-    private long parsePts(byte[] data, int offset) {
-        return ((long) (data[offset] & 0x0E) << 29) |
-                ((long) (data[offset + 1] & 0xFF) << 22) |
-                ((long) (data[offset + 2] & 0xFE) << 14) |
-                ((long) (data[offset + 3] & 0xFF) << 7) |
-                ((long) (data[offset + 4] & 0xFE) >> 1);
+    private long parsePts(ByteBuffer buffer, int offset) {
+        return ((long) (buffer.get(offset) & 0x0E) << 29) |
+                ((long) (buffer.get(offset + 1) & 0xFF) << 22) |
+                ((long) (buffer.get(offset + 2) & 0xFE) << 14) |
+                ((long) (buffer.get(offset + 3) & 0xFF) << 7) |
+                ((long) (buffer.get(offset + 4) & 0xFE) >> 1);
     }
 
     /**
@@ -154,8 +154,8 @@ public class TransportSystem {
                 int headerLength = packetData.get(i + 8) & 0xFF;
 
                 if (hasPts) {
-                    this.pts = parsePts(packetData.array(), i + 9);
-                    this.dts = hasDts ? parsePts(packetData.array(), i + 14) : this.pts;
+                    this.pts = parsePts(packetData, i + 9);
+                    this.dts = hasDts ? parsePts(packetData, i + 14) : this.pts;
                 }
 
                 i += 9 + headerLength;
