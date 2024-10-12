@@ -126,6 +126,13 @@ public class TransportSystem {
         return LibCaptionStatus.OK.ordinal();
     }
 
+    /**
+     * Handles the Program Association Table (PAT) to set the Program Map Table (PMT) PID.
+     *
+     * @param packetData the byte buffer containing the transport stream packet
+     * @param payloadPresent flag indicating if the payload is present in the packet
+     * @return the status of the handling operation, represented by the ordinal value of {@code LibCaptionStatus}
+     */
     private int handleProgramAssociationTable(ByteBuffer packetData, boolean payloadPresent) {
         if (payloadPresent) {
             packetData.position(packetData.position() + (packetData.get() & 0xFF) + 1);
@@ -134,6 +141,13 @@ public class TransportSystem {
         return LibCaptionStatus.OK.ordinal();
     }
 
+    /**
+     * Handles the Program Map Table (PMT) to identify and set the closed caption PID.
+     *
+     * @param packetData the byte buffer containing the transport stream packet
+     * @param payloadPresent flag indicating if the payload is present in the packet
+     * @return the status of the handling operation, represented by the ordinal value of {@code LibCaptionStatus}
+     */
     private int handleProgramMapTable(ByteBuffer packetData, boolean payloadPresent) {
         if (payloadPresent) {
             packetData.position(packetData.position() + (packetData.get() & 0xFF) + 1);
@@ -166,6 +180,13 @@ public class TransportSystem {
         return LibCaptionStatus.OK.ordinal();
     }
 
+    /**
+     * Handles the closed caption payload for packets identified with closed caption PID.
+     *
+     * @param packetData the byte buffer containing the transport stream packet
+     * @param pusi flag indicating if the payload unit start indicator (PUSI) is present
+     * @return the status of the payload handling operation, represented by the ordinal value of {@code LibCaptionStatus}
+     */
     private int handleClosedCaptionPayload(ByteBuffer packetData, boolean pusi) {
         if (pusi) {
             boolean hasPts = (packetData.get(packetData.position() + 7) & 0x80) != 0;
