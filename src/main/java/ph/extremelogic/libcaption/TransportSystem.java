@@ -27,6 +27,7 @@ public class TransportSystem {
     private static final int PAYLOAD_PRESENT_MASK = 0x10;
 
     /** Program Map Table PID. */
+    @Getter @Setter
     private short pmtpId;
 
     /** Elementary stream PID for closed captions. */
@@ -36,19 +37,19 @@ public class TransportSystem {
     private short streamType;
 
     /** The Presentation Timestamp (PTS) in MPEG timestamp format. */
+    @Getter @Setter
     private long pts;
 
     /** The Decode Timestamp (DTS) in MPEG timestamp format. */
+    @Getter @Setter
     private long dts;
 
     /** The size of the extracted data payload. */
-    @Getter
-    @Setter
+    @Getter @Setter
     private int size;
 
     /** The extracted data payload from the transport stream packet. */
-    @Getter
-    @Setter
+    @Getter @Setter
     private byte[] data;
 
     public TransportSystem() {
@@ -59,11 +60,8 @@ public class TransportSystem {
      * Initializes the transport system by resetting all fields to their default values.
      */
     private void init() {
-        pmtpId = 0;
-        ccpId = 0;
-        streamType = 0;
-        pts = 0;
-        dts = 0;
+        pmtpId = ccpId = streamType = 0;
+        pts = dts = 0;
         size = 0;
         data = null;
     }
@@ -95,81 +93,98 @@ public class TransportSystem {
             throw new IllegalArgumentException("Packet size must be " + TS_PACKET_SIZE + " bytes");
         }
 
-        int i = 0;
-        boolean pusi = (packetData.get(i + 1) & 0x40) != 0;
+        boolean pusi = (packetData.get(1) & 0x40) != 0;
+        short pid = (short) (((packetData.get(1) & 0x1F) << 8) | (packetData.get(2) & 0xFF));
+        boolean adaptionPresent = (packetData.get(3) & ADAPTION_FIELD_PRESENT_MASK) != 0;
+        boolean payloadPresent = (packetData.get(3) & PAYLOAD_PRESENT_MASK) != 0;
+
         Debug.print("DEBUG pusi: " + (pusi ? 1 : 0));
-        short pid = (short) (((packetData.get(i + 1) & 0x1F) << 8) | (packetData.get(i + 2) & 0xFF));
         Debug.print("DEBUG pid: " + pid);
-        boolean adaptionPresent = (packetData.get(i + 3) & ADAPTION_FIELD_PRESENT_MASK) != 0;
         Debug.print("DEBUG adaption_present: " + (adaptionPresent ? 1 : 0));
-        boolean payloadPresent = (packetData.get(i + 3) & PAYLOAD_PRESENT_MASK) != 0;
         Debug.print("DEBUG payload_present: " + (payloadPresent ? 1 : 0));
-        i += 4;
+
+        packetData.position(4);
 
         this.data = null;
         this.size = 0;
 
         if (adaptionPresent) {
-            int adaptionLength = packetData.get(i) & 0xFF;
-            i += 1 + adaptionLength;
-            Debug.print("DEBUG adaption_present: " + i);
+            int adaptionLength = packetData.get() & 0xFF;
+            packetData.position(packetData.position() + adaptionLength);
+            Debug.print("DEBUG adaption_present: " + packetData.position());
         }
 
         if (pid == 0) {
-            if (payloadPresent) {
-                i += (packetData.get(i) & 0xFF) + 1;
-            }
-            this.pmtpId = (short) (((packetData.get(i + 10) & 0x1F) << 8) | (packetData.get(i + 11) & 0xFF));
+            return handleProgramAssociationTable(packetData, payloadPresent);
         } else if (pid == this.pmtpId) {
-            if (payloadPresent) {
-                i += (packetData.get(i) & 0xFF) + 1;
-            }
-
-            int sectionLength = ((packetData.get(i + 1) & 0x0F) << 8) | (packetData.get(i + 2) & 0xFF);
-            boolean current = (packetData.get(i + 5) & 0x01) != 0;
-            int programInfoLength = ((packetData.get(i + 10) & 0x0F) << 8) | (packetData.get(i + 11) & 0xFF);
-            int descriptorLoopLength = sectionLength - (9 + programInfoLength + 4);
-
-            i += 12 + programInfoLength;
-
-            if (current) {
-                while (descriptorLoopLength >= 5) {
-                    short streamType = (short) (packetData.get(i) & 0xFF);
-                    short elementaryPid = (short) (((packetData.get(i + 1) & 0x1F) << 8) | (packetData.get(i + 2) & 0xFF));
-                    int esinfoLength = ((packetData.get(i + 3) & 0x0F) << 8) | (packetData.get(i + 4) & 0xFF);
-
-                    if (streamType == Mpeg.STREAM_TYPE_H262 || streamType == Mpeg.STREAM_TYPE_H264 || streamType == STREAM_TYPE_H265) {
-                        this.ccpId = elementaryPid;
-                        this.streamType = streamType;
-                    }
-
-                    i += 5 + esinfoLength;
-                    descriptorLoopLength -= 5 + esinfoLength;
-                }
-            }
+            return handleProgramMapTable(packetData, payloadPresent);
         } else if (payloadPresent && pid == this.ccpId) {
-            if (pusi) {
-                boolean hasPts = (packetData.get(i + 7) & 0x80) != 0;
-                boolean hasDts = (packetData.get(i + 7) & 0x40) != 0;
-                int headerLength = packetData.get(i + 8) & 0xFF;
-
-                if (hasPts) {
-                    this.pts = parsePts(packetData, i + 9);
-                    this.dts = hasDts ? parsePts(packetData, i + 14) : this.pts;
-                }
-
-                i += 9 + headerLength;
-            }
-
-            this.data = new byte[TS_PACKET_SIZE - i];
-            packetData.get(i, this.data, 0, this.data.length);
-            this.size = this.data.length;
-            Debug.print("DEBUG LIBCAPTION_READY");
-            return LibCaptionStatus.READY.ordinal();
+            return handleClosedCaptionPayload(packetData, pusi);
         }
 
         Debug.print("DEBUG LIBCAPTION_OK");
         return LibCaptionStatus.OK.ordinal();
+    }
+
+    private int handleProgramAssociationTable(ByteBuffer packetData, boolean payloadPresent) {
+        if (payloadPresent) {
+            packetData.position(packetData.position() + (packetData.get() & 0xFF) + 1);
+        }
+        this.pmtpId = (short) (((packetData.get(packetData.position() + 10) & 0x1F) << 8) | (packetData.get(packetData.position() + 11) & 0xFF));
+        return LibCaptionStatus.OK.ordinal();
+    }
+
+    private int handleProgramMapTable(ByteBuffer packetData, boolean payloadPresent) {
+        if (payloadPresent) {
+            packetData.position(packetData.position() + (packetData.get() & 0xFF) + 1);
+        }
+
+        int sectionLength = ((packetData.get(packetData.position() + 1) & 0x0F) << 8) | (packetData.get(packetData.position() + 2) & 0xFF);
+        boolean current = (packetData.get(packetData.position() + 5) & 0x01) != 0;
+        int programInfoLength = ((packetData.get(packetData.position() + 10) & 0x0F) << 8) | (packetData.get(packetData.position() + 11) & 0xFF);
+        int descriptorLoopLength = sectionLength - (9 + programInfoLength + 4);
+
+        packetData.position(packetData.position() + 12 + programInfoLength);
+
+        if (current) {
+            while (descriptorLoopLength >= 5) {
+                short streamType = (short) (packetData.get() & 0xFF);
+                short elementaryPid = (short) (((packetData.get() & 0x1F) << 8) | (packetData.get() & 0xFF));
+                int esinfoLength = ((packetData.get() & 0x0F) << 8) | (packetData.get() & 0xFF);
+
+                if (streamType == ph.extremelogic.libcaption.Mpeg.STREAM_TYPE_H262 ||
+                        streamType == ph.extremelogic.libcaption.Mpeg.STREAM_TYPE_H264 ||
+                        streamType == STREAM_TYPE_H265) {
+                    this.ccpId = elementaryPid;
+                    this.streamType = streamType;
+                }
+
+                packetData.position(packetData.position() + 1 + esinfoLength);
+                descriptorLoopLength -= 5 + esinfoLength;
+            }
+        }
+        return LibCaptionStatus.OK.ordinal();
+    }
+
+    private int handleClosedCaptionPayload(ByteBuffer packetData, boolean pusi) {
+        if (pusi) {
+            boolean hasPts = (packetData.get(packetData.position() + 7) & 0x80) != 0;
+            boolean hasDts = (packetData.get(packetData.position() + 7) & 0x40) != 0;
+            int headerLength = packetData.get(packetData.position() + 8) & 0xFF;
+
+            if (hasPts) {
+                this.pts = parsePts(packetData, packetData.position() + 9);
+                this.dts = hasDts ? parsePts(packetData, packetData.position() + 14) : this.pts;
+            }
+
+            packetData.position(packetData.position() + 9 + headerLength);
+        }
+
+        this.size = packetData.remaining();
+        this.data = new byte[this.size];
+        packetData.get(this.data);
+        Debug.print("DEBUG LIBCAPTION_READY");
+        return LibCaptionStatus.READY.ordinal();
     }
 
     /**
