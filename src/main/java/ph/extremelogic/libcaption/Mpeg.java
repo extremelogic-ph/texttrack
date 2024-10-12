@@ -236,7 +236,7 @@ public class Mpeg {
 
         int headerSize, scpos;
         packet.setStatus(LibCaptionStatus.OK);
-        System.arraycopy(data, 0, packet.data, packet.getSize(), size);
+        System.arraycopy(data, 0, packet.getNaluData(), packet.getSize(), size);
        // packet.size += size;
         packet.setSize(packet.getSize() + size);
 
@@ -248,13 +248,13 @@ public class Mpeg {
             Debug.print("loop: " + index++);
             Debug.printDataArray(data, size);
             Debug.print("packet size: " + packet.getSize());
-            scpos = findStartCode(packet.data, packet.getSize());
+            scpos = findStartCode(packet.getNaluData(), packet.getSize());
             if (scpos <= headerSize) {
                 break;
             }
 
-            if ((packet.getSize() > 4) && ((packet.data[3] & 0x1F) == H264_SEI_PACKET)) {
-                byte[] seiData = Arrays.copyOfRange(packet.data, headerSize, scpos);
+            if ((packet.getSize() > 4) && ((packet.getNaluData()[3] & 0x1F) == H264_SEI_PACKET)) {
+                byte[] seiData = Arrays.copyOfRange(packet.getNaluData(), headerSize, scpos);
                 Debug.print("H264_SEI_PACKET");
                 newPacketStatus = seiParse(seiMsgHolder, seiData, scpos - headerSize, dts + cts, index);
                 packet.setStatus(CaptionFrame.statusUpdate(packet.getStatus(), newPacketStatus));
@@ -309,9 +309,8 @@ public class Mpeg {
                 seiMsgHolder.free();
             }
 
-//            packet.size -= scpos;
             packet.setSize(packet.getSize() - scpos);
-            System.arraycopy(packet.data, scpos, packet.data, 0, packet.getSize());
+            System.arraycopy(packet.getNaluData(), scpos, packet.getNaluData(), 0, packet.getSize());
         }
 
         return size;

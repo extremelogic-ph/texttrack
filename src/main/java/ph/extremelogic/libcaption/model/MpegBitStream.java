@@ -35,7 +35,9 @@ public class MpegBitStream {
     @Getter
     @Setter
     private int size;
-    public byte[] data = new byte[MAX_NALU_SIZE + 1]; // NALU data
+
+    @Getter
+    private byte[] naluData = new byte[MAX_NALU_SIZE + 1]; // NALU data
 
     @Getter
     @Setter
@@ -67,7 +69,7 @@ public class MpegBitStream {
     }
 
     private void init() {
-        this.data = new byte[MAX_NALU_SIZE + 1];
+        this.naluData = new byte[MAX_NALU_SIZE + 1];
         this.size = 0;
         this.status = LibCaptionStatus.OK;
         this.front = 0;
