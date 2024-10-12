@@ -40,24 +40,40 @@ import static ph.extremelogic.libcaption.Mpeg.STREAM_TYPE_H264;
 import static ph.extremelogic.libcaption.Mpeg.mpegBitStreamParse;
 import static ph.extremelogic.libcaption.TransportSystem.TS_PACKET_SIZE;
 
+/**
+ * The TextTrack class is responsible for processing transport stream files to extract caption data.
+ */
 public class TextTrack {
     private static final int EXIT_FAILURE = 1;
-    private static final String TS_FILE_PATH = "./cc_minimum.ts";
     public static final boolean debug = false;
 
+    /**
+     * Main entry point for the TextTrack application.
+     * @param args Command line arguments, expects the first argument to be the path to the transport stream file.
+     */
     public static void main(String[] args) {
         long startTime = System.nanoTime();
+        if (args.length < 1) {
+            System.err.println("Usage: java TextTrack <path_to_transport_stream_file>");
+            System.exit(EXIT_FAILURE);
+        }
+        String tsFilePath = args[0];
 
-        try (FileChannel fileChannel = FileChannel.open(Path.of(TS_FILE_PATH), StandardOpenOption.READ)) {
+        try (FileChannel fileChannel = FileChannel.open(Path.of(tsFilePath), StandardOpenOption.READ)) {
             processTransportStream(fileChannel);
         } catch (IOException e) {
-         //   logger.error("Failed to open input file: {}", TS_FILE_PATH, e);
+            System.err.println("Failed to open input file: " + tsFilePath);
             System.exit(EXIT_FAILURE);
         }
 
         logProcessingTime(startTime);
     }
 
+    /**
+     * Processes the transport stream file to extract and process packets.
+     * @param fileChannel The file channel associated with the transport stream file.
+     * @throws IOException If there is an issue reading the file.
+     */
     private static void processTransportStream(FileChannel fileChannel) throws IOException {
         TransportSystem ts = new TransportSystem();
         MpegBitStream mpegbs = new MpegBitStream();
@@ -79,6 +95,13 @@ public class TextTrack {
         }
     }
 
+    /**
+     * Processes each packet extracted from the transport stream.
+     * @param ts The transport system handling the stream packets.
+     * @param mpegbs The MPEG bit stream to parse.
+     * @param frame The caption frame to update.
+     * @param index The current packet index.
+     */
     private static void processPacket(TransportSystem ts, MpegBitStream mpegbs, CaptionFrame frame, int index) {
         double dts = ts.dtsSeconds();
         double cts = ts.ctsSeconds();
@@ -95,6 +118,11 @@ public class TextTrack {
         }
     }
 
+    /**
+     * Handles the status of the MPEG bitstream after processing a packet.
+     * @param mpegbs The MPEG bitstream.
+     * @param frame The caption frame to display if ready.
+     */
     private static void handleMpegBitStreamStatus(MpegBitStream mpegbs, CaptionFrame frame) {
         switch (mpegbs.getStatus()) {
             case OK:
@@ -110,9 +138,13 @@ public class TextTrack {
         }
     }
 
+    /**
+     * Logs the processing time from the start to the end of the application run.
+     * @param startTime The start time of the processing in nanoseconds.
+     */
     private static void logProcessingTime(long startTime) {
         long endTime = System.nanoTime();
         double durationInSeconds = (endTime - startTime) / 1_000_000_000.0;
-    //    logger.info("Processing time: {} seconds", durationInSeconds);
+        // System.out.println("Processing time: " + durationInSeconds);
     }
 }

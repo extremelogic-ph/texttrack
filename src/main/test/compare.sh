@@ -8,7 +8,7 @@ DIFF_RESULTS=diff_results.txt
 TARGET_DIR=../../../target
 JAR_FILE=texttrack-1.0-SNAPSHOT.jar
 
-java -jar ${TARGET_DIR}/${JAR_FILE} > ${OUTPUT_JAVA} 
+java -jar ${TARGET_DIR}/${JAR_FILE} ./cc_minimum.ts > ${OUTPUT_JAVA} 
 
 diff ${OUTPUT_C} ${OUTPUT_JAVA} > ${DIFF_FILE}
 
