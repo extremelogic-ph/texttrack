@@ -23,6 +23,8 @@
  */
 package ph.extremelogic.libcaption.model;
 
+import lombok.Getter;
+import lombok.Setter;
 import ph.extremelogic.libcaption.cea708.Cea708Data;
 import ph.extremelogic.libcaption.constant.LibCaptionStatus;
 
@@ -30,7 +32,9 @@ import static ph.extremelogic.libcaption.Mpeg.MAX_NALU_SIZE;
 import static ph.extremelogic.libcaption.Mpeg.MAX_REFERENCE_FRAMES;
 
 public class MpegBitStream {
-    public int size;
+    @Getter
+    @Setter
+    private int size;
     public byte[] data = new byte[MAX_NALU_SIZE + 1]; // NALU data
     public double dts; // Decoding timestamp
     public double cts; // Composition timestamp

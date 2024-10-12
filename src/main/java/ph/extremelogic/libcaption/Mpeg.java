@@ -218,16 +218,16 @@ public class Mpeg {
     public static int mpegBitStreamParse(MpegBitStream packet, CaptionFrame frame, byte[] data, int size, int streamType, double dts, double cts, int debugindex) {
         Debug.print("mpeg_bitstream_parse");
         Debug.print("MAX_NALU_SIZE: " + MAX_NALU_SIZE);
-        Debug.print("packet size: " + packet.size);
-        if (MAX_NALU_SIZE <= packet.size) {
+        Debug.print("packet size: " + packet.getSize());
+        if (MAX_NALU_SIZE <= packet.getSize()) {
             packet.status = LibCaptionStatus.ERROR;
             Debug.print("LIBCAPTION_ERROR");
             return 0;
         }
 
         // Consume up to MAX_NALU_SIZE bytes
-        if (MAX_NALU_SIZE <= packet.size + size) {
-            size = MAX_NALU_SIZE - packet.size;
+        if (MAX_NALU_SIZE <= packet.getSize() + size) {
+            size = MAX_NALU_SIZE - packet.getSize();
             Debug.print("Consume up to MAX_NALU_SIZE");
         }
 
@@ -236,8 +236,9 @@ public class Mpeg {
 
         int headerSize, scpos;
         packet.status = LibCaptionStatus.OK;
-        System.arraycopy(data, 0, packet.data, packet.size, size);
-        packet.size += size;
+        System.arraycopy(data, 0, packet.data, packet.getSize(), size);
+       // packet.size += size;
+        packet.setSize(packet.getSize() + size);
 
         headerSize = 4;
         int index = 0;
@@ -246,13 +247,13 @@ public class Mpeg {
         while (packet.status == LibCaptionStatus.OK) {
             Debug.print("loop: " + index++);
             Debug.printDataArray(data, size);
-            Debug.print("packet size: " + packet.size);
-            scpos = findStartCode(packet.data, packet.size);
+            Debug.print("packet size: " + packet.getSize());
+            scpos = findStartCode(packet.data, packet.getSize());
             if (scpos <= headerSize) {
                 break;
             }
 
-            if ((packet.size > 4) && ((packet.data[3] & 0x1F) == H264_SEI_PACKET)) {
+            if ((packet.getSize() > 4) && ((packet.data[3] & 0x1F) == H264_SEI_PACKET)) {
                 byte[] seiData = Arrays.copyOfRange(packet.data, headerSize, scpos);
                 Debug.print("H264_SEI_PACKET");
                 newPacketStatus = seiParse(seiMsgHolder, seiData, scpos - headerSize, dts + cts, index);
@@ -308,8 +309,9 @@ public class Mpeg {
                 seiMsgHolder.free();
             }
 
-            packet.size -= scpos;
-            System.arraycopy(packet.data, scpos, packet.data, 0, packet.size);
+//            packet.size -= scpos;
+            packet.setSize(packet.getSize() - scpos);
+            System.arraycopy(packet.data, scpos, packet.data, 0, packet.getSize());
         }
 
         return size;
