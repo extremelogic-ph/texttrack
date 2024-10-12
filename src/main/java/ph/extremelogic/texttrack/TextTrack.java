@@ -23,90 +23,96 @@
  */
 package ph.extremelogic.texttrack;
 
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.util.Arrays;
 import ph.extremelogic.libcaption.TransportSystem;
 import ph.extremelogic.libcaption.caption.CaptionFrame;
 import ph.extremelogic.libcaption.constant.LibCaptionStatus;
 import ph.extremelogic.libcaption.model.MpegBitStream;
 import ph.extremelogic.texttrack.utils.Debug;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.util.Arrays;
+import java.nio.channels.FileChannel;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 
 import static ph.extremelogic.libcaption.Mpeg.STREAM_TYPE_H264;
 import static ph.extremelogic.libcaption.Mpeg.mpegBitStreamParse;
 import static ph.extremelogic.libcaption.TransportSystem.TS_PACKET_SIZE;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.util.Arrays;
-
 public class TextTrack {
-    public static final int EXIT_FAILURE = 1;
-    public static boolean debug = false;
+    private static final int EXIT_FAILURE = 1;
+    private static final String TS_FILE_PATH = "./cc_minimum.ts";
+    public static final boolean debug = false;
 
     public static void main(String[] args) {
         long startTime = System.nanoTime();
-        String myData = "";
-        int index = 0;
-        TransportSystem ts = new TransportSystem();
-        MpegBitStream mpegbs = new MpegBitStream();
-        CaptionFrame frame = new CaptionFrame();
-        byte[] pkt = new byte[TS_PACKET_SIZE];
 
-        String tsFilePath = "./cc_minimum.ts";
-
-        // Start timer
-
-        try (FileInputStream fileInputStream = new FileInputStream(tsFilePath)) {
-            while (fileInputStream.read(pkt) == TS_PACKET_SIZE) {
-                Debug.print("DEBUG index: " + index++);
-                ByteBuffer byteBuffer = ByteBuffer.wrap(pkt);
-                if (ts.parsePacket(byteBuffer) == LibCaptionStatus.READY.ordinal()) {
-                    double dts = ts.dtsSeconds();
-                    double cts = ts.ctsSeconds();
-
-                    Debug.print("DEBUG DTS: " + String.format("%.6f", dts) + ", CTS: " + String.format("%.6f", cts));
-                    Debug.print("DEBUG ts.size: " + ts.getSize());
-
-                    while (ts.getSize() > 0) {
-                        int bytesRead = mpegBitStreamParse(mpegbs, frame, ts.getData(), ts.getSize(), STREAM_TYPE_H264, dts, cts, index);
-                        ts.setData(Arrays.copyOfRange(ts.getData(), bytesRead, ts.getData().length));
-                        ts.setSize(ts.getSize() - bytesRead);
-
-                        switch (mpegbs.status) {
-                            case OK:
-                                break;
-                            case READY:
-                                System.out.println("-------------------------------");
-                                myData = frame.toText();
-                                System.out.println("data:\n" + myData);
-                                break;
-                            default:
-                                System.exit(EXIT_FAILURE);
-                                break;
-                        }
-                    }
-                } else {
-                    Debug.print("Not yet ready");
-                }
-            }
+        try (FileChannel fileChannel = FileChannel.open(Path.of(TS_FILE_PATH), StandardOpenOption.READ)) {
+            processTransportStream(fileChannel);
         } catch (IOException e) {
-            System.out.println("Failed to open input");
+         //   logger.error("Failed to open input file: {}", TS_FILE_PATH, e);
             System.exit(EXIT_FAILURE);
         }
 
-        // End timer
+        logProcessingTime(startTime);
+    }
+
+    private static void processTransportStream(FileChannel fileChannel) throws IOException {
+        TransportSystem ts = new TransportSystem();
+        MpegBitStream mpegbs = new MpegBitStream();
+        CaptionFrame frame = new CaptionFrame();
+        ByteBuffer pkt = ByteBuffer.allocateDirect(TS_PACKET_SIZE);
+
+        int index = 0;
+        while (fileChannel.read(pkt) == TS_PACKET_SIZE) {
+            pkt.flip();
+            Debug.print("DEBUG index: " + index++);
+
+            if (ts.parsePacket(pkt) == LibCaptionStatus.READY.ordinal()) {
+                processPacket(ts, mpegbs, frame, index);
+            } else {
+                Debug.print("Not yet ready");
+            }
+
+            pkt.clear();
+        }
+    }
+
+    private static void processPacket(TransportSystem ts, MpegBitStream mpegbs, CaptionFrame frame, int index) {
+        double dts = ts.dtsSeconds();
+        double cts = ts.ctsSeconds();
+
+        Debug.print("DEBUG DTS: " + String.format("%.6f", dts) + ", CTS: " + String.format("%.6f", cts));
+        Debug.print("DEBUG ts.size: " + ts.getSize());
+
+        while (ts.getSize() > 0) {
+            int bytesRead = mpegBitStreamParse(mpegbs, frame, ts.getData(), ts.getSize(), STREAM_TYPE_H264, dts, cts, index);
+            ts.setData(Arrays.copyOfRange(ts.getData(), bytesRead, ts.getData().length));
+            ts.setSize(ts.getSize() - bytesRead);
+
+            handleMpegBitStreamStatus(mpegbs, frame);
+        }
+    }
+
+    private static void handleMpegBitStreamStatus(MpegBitStream mpegbs, CaptionFrame frame) {
+        switch (mpegbs.status) {
+            case OK:
+                break;
+            case READY:
+                System.out.println("-------------------------------");
+                String captionData = frame.toText();
+                System.out.println("data:\n" + captionData);
+                break;
+            default:
+                System.exit(EXIT_FAILURE);
+                break;
+        }
+    }
+
+    private static void logProcessingTime(long startTime) {
         long endTime = System.nanoTime();
-
-        // Calculate elapsed time
-        long durationInNano = endTime - startTime;
-        double durationInSeconds = durationInNano / 1_000_000_000.0;
-
-        // Output time taken to process
-        // Current processing time is 5.661783692
-        // System.out.println("Processing time: " + durationInSeconds + " seconds");
+        double durationInSeconds = (endTime - startTime) / 1_000_000_000.0;
+    //    logger.info("Processing time: {} seconds", durationInSeconds);
     }
 }
