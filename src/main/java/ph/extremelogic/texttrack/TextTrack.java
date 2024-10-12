@@ -38,11 +38,17 @@ import static ph.extremelogic.libcaption.Mpeg.STREAM_TYPE_H264;
 import static ph.extremelogic.libcaption.Mpeg.mpegBitStreamParse;
 import static ph.extremelogic.libcaption.TransportSystem.TS_PACKET_SIZE;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.util.Arrays;
+
 public class TextTrack {
     public static final int EXIT_FAILURE = 1;
     public static boolean debug = false;
 
     public static void main(String[] args) {
+        long startTime = System.nanoTime();
         String myData = "";
         int index = 0;
         TransportSystem ts = new TransportSystem();
@@ -51,6 +57,9 @@ public class TextTrack {
         byte[] pkt = new byte[TS_PACKET_SIZE];
 
         String tsFilePath = "./cc_minimum.ts";
+
+        // Start timer
+
         try (FileInputStream fileInputStream = new FileInputStream(tsFilePath)) {
             while (fileInputStream.read(pkt) == TS_PACKET_SIZE) {
                 Debug.print("DEBUG index: " + index++);
@@ -88,6 +97,16 @@ public class TextTrack {
             System.out.println("Failed to open input");
             System.exit(EXIT_FAILURE);
         }
+
+        // End timer
+        long endTime = System.nanoTime();
+
+        // Calculate elapsed time
+        long durationInNano = endTime - startTime;
+        double durationInSeconds = durationInNano / 1_000_000_000.0;
+
+        // Output time taken to process
+        // Current processing time is 5.661783692
+        System.out.println("Processing time: " + durationInSeconds + " seconds");
     }
 }
-
