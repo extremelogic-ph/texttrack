@@ -1,26 +1,3 @@
-/*
- * The MIT License
- *
- * Copyright 2016-2017 Twitch Interactive, Inc. or its affiliates. All Rights Reserved.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
 package ph.extremelogic.libcaption;
 
 import lombok.Getter;
@@ -43,6 +20,11 @@ public class TransportSystem {
 
     /** The size of a standard MPEG transport stream packet in bytes. */
     public static final int TS_PACKET_SIZE = 188;
+
+    private static final int PTS_OFFSET = 9;
+    private static final int HEADER_LENGTH_OFFSET = 8;
+    private static final int ADAPTION_FIELD_PRESENT_MASK = 0x20;
+    private static final int PAYLOAD_PRESENT_MASK = 0x10;
 
     /** Program Map Table PID. */
     private short pmtpId;
@@ -94,13 +76,11 @@ public class TransportSystem {
      * @return the parsed PTS as a long value
      */
     private long parsePts(byte[] data, int offset) {
-        long p = 0;
-        p |= ((long) (data[offset] & 0x0E)) << 29;
-        p |= ((long) (data[offset + 1] & 0xFF)) << 22;
-        p |= ((long) (data[offset + 2] & 0xFE)) << 14;
-        p |= ((long) (data[offset + 3] & 0xFF)) << 7;
-        p |= ((long) (data[offset + 4] & 0xFE)) >> 1;
-        return p;
+        return ((long) (data[offset] & 0x0E) << 29) |
+                ((long) (data[offset + 1] & 0xFF) << 22) |
+                ((long) (data[offset + 2] & 0xFE) << 14) |
+                ((long) (data[offset + 3] & 0xFF) << 7) |
+                ((long) (data[offset + 4] & 0xFE) >> 1);
     }
 
     /**
@@ -116,13 +96,13 @@ public class TransportSystem {
         }
 
         int i = 0;
-        boolean pusi = (packetData.get(i + 1) & 0x40) != 0; // Payload Unit Start Indicator
+        boolean pusi = (packetData.get(i + 1) & 0x40) != 0;
         Debug.print("DEBUG pusi: " + (pusi ? 1 : 0));
         short pid = (short) (((packetData.get(i + 1) & 0x1F) << 8) | (packetData.get(i + 2) & 0xFF));
         Debug.print("DEBUG pid: " + pid);
-        boolean adaptionPresent = (packetData.get(i + 3) & 0x20) != 0;
+        boolean adaptionPresent = (packetData.get(i + 3) & ADAPTION_FIELD_PRESENT_MASK) != 0;
         Debug.print("DEBUG adaption_present: " + (adaptionPresent ? 1 : 0));
-        boolean payloadPresent = (packetData.get(i + 3) & 0x10) != 0;
+        boolean payloadPresent = (packetData.get(i + 3) & PAYLOAD_PRESENT_MASK) != 0;
         Debug.print("DEBUG payload_present: " + (payloadPresent ? 1 : 0));
         i += 4;
 
@@ -182,7 +162,7 @@ public class TransportSystem {
             }
 
             this.data = new byte[TS_PACKET_SIZE - i];
-            System.arraycopy(packetData.array(), i, this.data, 0, this.data.length);
+            packetData.get(i, this.data, 0, this.data.length);
             this.size = this.data.length;
             Debug.print("DEBUG LIBCAPTION_READY");
             return LibCaptionStatus.READY.ordinal();
@@ -216,6 +196,6 @@ public class TransportSystem {
      * @return the CTS in seconds
      */
     public double ctsSeconds() {
-        return ((double) this.pts - this.dts) / MPEG_TIMEBASE;
+        return (this.pts - this.dts) / MPEG_TIMEBASE;
     }
 }

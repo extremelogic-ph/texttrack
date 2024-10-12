@@ -107,6 +107,6 @@ public class TextTrack {
 
         // Output time taken to process
         // Current processing time is 5.661783692
-        System.out.println("Processing time: " + durationInSeconds + " seconds");
+        // System.out.println("Processing time: " + durationInSeconds + " seconds");
     }
 }
