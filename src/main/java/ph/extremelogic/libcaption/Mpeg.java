@@ -220,7 +220,7 @@ public class Mpeg {
         Debug.print("MAX_NALU_SIZE: " + MAX_NALU_SIZE);
         Debug.print("packet size: " + packet.getSize());
         if (MAX_NALU_SIZE <= packet.getSize()) {
-            packet.status = LibCaptionStatus.ERROR;
+            packet.setStatus(LibCaptionStatus.ERROR);
             Debug.print("LIBCAPTION_ERROR");
             return 0;
         }
@@ -235,7 +235,7 @@ public class Mpeg {
         LibCaptionStatus newPacketStatus;
 
         int headerSize, scpos;
-        packet.status = LibCaptionStatus.OK;
+        packet.setStatus(LibCaptionStatus.OK);
         System.arraycopy(data, 0, packet.data, packet.getSize(), size);
        // packet.size += size;
         packet.setSize(packet.getSize() + size);
@@ -244,7 +244,7 @@ public class Mpeg {
         int index = 0;
 
         Debug.print("Before loop");
-        while (packet.status == LibCaptionStatus.OK) {
+        while (packet.getStatus() == LibCaptionStatus.OK) {
             Debug.print("loop: " + index++);
             Debug.printDataArray(data, size);
             Debug.print("packet size: " + packet.getSize());
@@ -257,7 +257,7 @@ public class Mpeg {
                 byte[] seiData = Arrays.copyOfRange(packet.data, headerSize, scpos);
                 Debug.print("H264_SEI_PACKET");
                 newPacketStatus = seiParse(seiMsgHolder, seiData, scpos - headerSize, dts + cts, index);
-                packet.status = CaptionFrame.statusUpdate(packet.status, newPacketStatus);
+                packet.setStatus(CaptionFrame.statusUpdate(packet.getStatus(), newPacketStatus));
 
                 int count = 0;
                 int count2 = 0;
@@ -276,7 +276,7 @@ public class Mpeg {
                         cea708Data.init(dts + cts);
 
                         newPacketStatus = Cea708.parseH264(msg.getPayload(), msg.getSize(), cea708Data, index);
-                        packet.status = CaptionFrame.statusUpdate(packet.status, newPacketStatus);
+                        packet.setStatus(CaptionFrame.statusUpdate(packet.getStatus(), newPacketStatus));
 
                         mpegBitstreamCea708Sort(packet);
 //                        packet.sortCEA708();
@@ -287,7 +287,7 @@ public class Mpeg {
                                 System.out.println("Exit packet.latent == 0");
                                 break;
                             }
-                            if (packet.status != LibCaptionStatus.OK) {
+                            if (packet.getStatus() != LibCaptionStatus.OK) {
                                 System.out.println("Exit status != LIBCAPTION_OK");
                                 break;
                             }
@@ -300,7 +300,7 @@ public class Mpeg {
                             System.out.println("count2=" + count2++);
 
                             newPacketStatus = Cea708.toCaptionFrame(frame, cea708Data);
-                            packet.status = CaptionFrame.statusUpdate(LibCaptionStatus.OK, newPacketStatus);
+                            packet.setStatus(CaptionFrame.statusUpdate(LibCaptionStatus.OK, newPacketStatus));
                             packet.front = (packet.front + 1) % MAX_REFERENCE_FRAMES;
                             packet.latent--;
                         }

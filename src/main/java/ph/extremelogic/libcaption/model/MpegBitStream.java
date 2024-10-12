@@ -36,9 +36,10 @@ public class MpegBitStream {
     @Setter
     private int size;
     public byte[] data = new byte[MAX_NALU_SIZE + 1]; // NALU data
-    public double dts; // Decoding timestamp
-    public double cts; // Composition timestamp
-    public LibCaptionStatus status; // Caption status
+
+    @Getter
+    @Setter
+    private LibCaptionStatus status; // Caption status
 
     // Priority queue for out of order frame processing
     // Should probablly be a linked list
@@ -54,8 +55,6 @@ public class MpegBitStream {
     private void init() {
         this.data = new byte[MAX_NALU_SIZE + 1];
         this.size = 0;
-        this.dts = 0.0;
-        this.cts = 0.0;
         this.status = LibCaptionStatus.OK;
         this.front = 0;
         this.latent = 0;

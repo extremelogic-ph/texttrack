@@ -96,7 +96,7 @@ public class TextTrack {
     }
 
     private static void handleMpegBitStreamStatus(MpegBitStream mpegbs, CaptionFrame frame) {
-        switch (mpegbs.status) {
+        switch (mpegbs.getStatus()) {
             case OK:
                 break;
             case READY:
