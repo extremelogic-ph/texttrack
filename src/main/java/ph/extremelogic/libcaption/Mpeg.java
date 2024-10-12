@@ -270,8 +270,8 @@ public class Mpeg {
                         System.out.println("count=" + count++);
 
                         // Emplace back
-                        packet.latent++;
-                        Cea708Data cea708Data = packet.getCEA708At(packet.latent - 1);
+                        packet.incrementLatent();
+                        Cea708Data cea708Data = packet.getCEA708At(packet.getLatent() - 1);
 
                         cea708Data.init(dts + cts);
 
@@ -283,7 +283,7 @@ public class Mpeg {
 
                         // Loop will terminate on LIBCAPTION_READY
                         while (true) {
-                            if (packet.latent == 0) {
+                            if (packet.getLatent() == 0) {
                                 System.out.println("Exit packet.latent == 0");
                                 break;
                             }
@@ -301,8 +301,8 @@ public class Mpeg {
 
                             newPacketStatus = Cea708.toCaptionFrame(frame, cea708Data);
                             packet.setStatus(CaptionFrame.statusUpdate(LibCaptionStatus.OK, newPacketStatus));
-                            packet.front = (packet.front + 1) % MAX_REFERENCE_FRAMES;
-                            packet.latent--;
+                            packet.setFront((packet.getFront() + 1) % MAX_REFERENCE_FRAMES);
+                            packet.decrementLatent();
                         }
                     }
                 }
@@ -333,11 +333,11 @@ public class Mpeg {
     private static void mpegBitstreamCea708Sort(MpegBitStream packet) {
         // Early exit bubble sort for small nearly sorted lists
         boolean swapped;
-        for (int i = 0; i < packet.latent - 1; ++i) {
+        for (int i = 0; i < packet.getLatent() - 1; ++i) {
             swapped = false;
-            for (int j = 1; j < packet.latent - i; ++j) {
-                int posA = (packet.front + j - 1) % MAX_REFERENCE_FRAMES;
-                int posB = (packet.front + j) % MAX_REFERENCE_FRAMES;
+            for (int j = 1; j < packet.getLatent() - i; ++j) {
+                int posA = (packet.getFront() + j - 1) % MAX_REFERENCE_FRAMES;
+                int posB = (packet.getFront() + j) % MAX_REFERENCE_FRAMES;
 
                 Cea708Data a = packet.cea708Data[posA];
                 Cea708Data b = packet.cea708Data[posB];
@@ -358,6 +358,6 @@ public class Mpeg {
 
 
     private static Cea708Data mpegBitstreamCea708At(MpegBitStream packet, int pos) {
-        return packet.cea708Data[(packet.front + pos) % MAX_REFERENCE_FRAMES];
+        return packet.cea708Data[(packet.getFront() + pos) % MAX_REFERENCE_FRAMES];
     }
 }

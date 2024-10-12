@@ -43,9 +43,23 @@ public class MpegBitStream {
 
     // Priority queue for out of order frame processing
     // Should probablly be a linked list
-    public int front;
-    public int latent;
+    @Getter
+    @Setter
+    private int front;
+
+    @Getter
+    @Setter
+    private int latent;
+
     public Cea708Data[] cea708Data;
+
+    public void incrementLatent() {
+        latent++;
+    }
+
+    public void decrementLatent() {
+        latent--;
+    }
 
     // Constructor to initialize the MPEG bitstream
     public MpegBitStream() {
