@@ -56,12 +56,38 @@ public class ArrayUtil {
         shiftRight3(array, 0, to);
     }
 
-    public static void swap(int[] arr, int ind1, int ind2) {
-        if (ind1 == ind2)
-            return;
-        int tmp = arr[ind1];
-        arr[ind1] = arr[ind2];
-        arr[ind2] = tmp;
+    /**
+     * Swaps two elements in an array of any type.
+     *
+     * @param arr   the array in which elements will be swapped
+     * @param ind1  the index of the first element to swap
+     * @param ind2  the index of the second element to swap
+     */
+    public static <T> void swap(T[] arr, int ind1, int ind2) {
+        if (ind1 != ind2) {
+            T tmp = arr[ind1];
+            arr[ind1] = arr[ind2];
+            arr[ind2] = tmp;
+        }
+    }
+
+    /**
+     * A generic swap method that works with primitive arrays using reflection.
+     *
+     * @param arr   the array in which elements will be swapped
+     * @param ind1  the index of the first element to swap
+     * @param ind2  the index of the second element to swap
+     */
+    public static void swap(Object arr, int ind1, int ind2) {
+        if (!arr.getClass().isArray()) {
+            throw new IllegalArgumentException("Input must be an array.");
+        }
+
+        if (ind1 != ind2) {
+            Object tmp = Array.get(arr, ind1);
+            Array.set(arr, ind1, Array.get(arr, ind2));
+            Array.set(arr, ind2, tmp);
+        }
     }
 
     public static int sumInt(int[] array) {

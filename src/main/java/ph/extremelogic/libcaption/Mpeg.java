@@ -329,32 +329,31 @@ public class Mpeg {
         return 0;
     }
 
+    /**
+     * Uses a simple bubble sort algorithm to sort CEA708 data in an MPEG bitstream based on timestamps.
+     * This method optimizes the process by exiting early if no swaps are needed, indicating that the list is sorted.
+     *
+     * @param packet the MpegBitStream packet containing CEA708 data.
+     */
     private static void mpegBitstreamCea708Sort(MpegBitStream packet) {
-        // Early exit bubble sort for small nearly sorted lists
         boolean swapped;
+        Cea708Data[] cea708Data = packet.getCea708Data();
+
         for (int i = 0; i < packet.getLatent() - 1; ++i) {
             swapped = false;
             for (int j = 1; j < packet.getLatent() - i; ++j) {
                 int posA = (packet.getFront() + j - 1) % MAX_REFERENCE_FRAMES;
                 int posB = (packet.getFront() + j) % MAX_REFERENCE_FRAMES;
 
-                Cea708Data a = packet.getCea708Data()[posA];
-                Cea708Data b = packet.getCea708Data()[posB];
-
-                if (a.getTimestamp() > b.getTimestamp()) {
-                    // Swap a and b in the array
-                    Cea708Data temp = packet.getCea708Data()[posA];
-                    Cea708Data[] cea708Data = packet.getCea708Data(); // Get the current array
-                    cea708Data[posA] = packet.getCea708Data()[posB];
-                    cea708Data[posB] = temp;
-                    packet.setCea708Data(cea708Data);
-
+                if (cea708Data[posA].getTimestamp() > cea708Data[posB].getTimestamp()) {
+                    ArrayUtil.swap(cea708Data, posA, posB); // Using a utility method to swap elements
                     swapped = true;
                 }
             }
-            // Break early if no swaps are made during the pass
-            if (!swapped) break;
+            if (!swapped) break; // Early exit if no swaps occurred
         }
+
+        packet.setCea708Data(cea708Data);
     }
 
 
