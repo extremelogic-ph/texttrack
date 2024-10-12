@@ -53,7 +53,9 @@ public class MpegBitStream {
     @Setter
     private int latent;
 
-    public Cea708Data[] cea708Data;
+    @Getter
+    @Setter
+    private Cea708Data[] cea708Data;
 
     public void incrementLatent() {
         latent++;

@@ -338,14 +338,16 @@ public class Mpeg {
                 int posA = (packet.getFront() + j - 1) % MAX_REFERENCE_FRAMES;
                 int posB = (packet.getFront() + j) % MAX_REFERENCE_FRAMES;
 
-                Cea708Data a = packet.cea708Data[posA];
-                Cea708Data b = packet.cea708Data[posB];
+                Cea708Data a = packet.getCea708Data()[posA];
+                Cea708Data b = packet.getCea708Data()[posB];
 
                 if (a.getTimestamp() > b.getTimestamp()) {
                     // Swap a and b in the array
-                    Cea708Data temp = packet.cea708Data[posA];
-                    packet.cea708Data[posA] = packet.cea708Data[posB];
-                    packet.cea708Data[posB] = temp;
+                    Cea708Data temp = packet.getCea708Data()[posA];
+                    Cea708Data[] cea708Data = packet.getCea708Data(); // Get the current array
+                    cea708Data[posA] = packet.getCea708Data()[posB];
+                    cea708Data[posB] = temp;
+                    packet.setCea708Data(cea708Data);
 
                     swapped = true;
                 }
@@ -357,6 +359,6 @@ public class Mpeg {
 
 
     private static Cea708Data mpegBitstreamCea708At(MpegBitStream packet, int pos) {
-        return packet.cea708Data[(packet.getFront() + pos) % MAX_REFERENCE_FRAMES];
+        return packet.getCea708Data()[(packet.getFront() + pos) % MAX_REFERENCE_FRAMES];
     }
 }
