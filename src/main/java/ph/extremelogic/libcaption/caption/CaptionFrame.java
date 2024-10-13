@@ -182,10 +182,7 @@ public class CaptionFrame {
         Debug.print("caption_frame_write_char");
         Debug.print(" - row: " + row);
         Debug.print(" - col: " + col);
-        //Debug.print(" - style: " + style);
-        //Debug.print(" - underline: " + underline);
         Debug.print(" - c: " + c);
-        //System.out.print("" + c);
         if (this.write == null || c == null || c.isEmpty()) {
             return 0;
         }
@@ -246,7 +243,6 @@ public class CaptionFrame {
         // Clear the last row
         for (int col = 0; col < SCREEN_COLS; col++) {
             this.write.getCell()[SCREEN_ROWS - 1][col] = new CaptionFrameCell();
-            //Debug.print("caption_frame_carriage_return D");
         }
         return LibCaptionStatus.OK;
     }
@@ -312,8 +308,6 @@ public class CaptionFrame {
         int[] cc = new int[1];
         Eia608Control cmd = eia608ParseControl(ccData, cc);
         Debug.print("eia608_parse_control(" + ccData + ", " + cc[0] + ")");
-
-        //System.out.printf("caption_frame_decode_control() cmd=0x%04X ", cmd);
 
         switch (cmd) {
             // PAINT ON
@@ -430,7 +424,6 @@ public class CaptionFrame {
      * @return the updated {@code LibcaptionStatus}
      */
     public LibCaptionStatus decodePreamble(int ccData) {
-        //          Debug.print("caption_frame_decode_preamble() cc_data=0x%04X ", cc_data);
         Eia608Style[] sty = new Eia608Style[1];
         int[] row = new int[1];
         int[] col = new int[1];
@@ -438,7 +431,6 @@ public class CaptionFrame {
         int[] uln = new int[1];
 
         if (eia608ParsePreamble(ccData, row, col, sty, chn, uln)) {
-            // System.out.printf("row:%d col:%d underline:%d channel:%d style:%s\n", row[0], col[0], uln[0], chn[0], style[sty[0]]);
             this.state.setRow(row[0]);
             this.state.setCol(col[0]);
             this.state.setStyle(sty[0].getValue());

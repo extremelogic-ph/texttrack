@@ -30,6 +30,7 @@ import ph.extremelogic.libcaption.constant.ItuTt35ProviderCode;
 import ph.extremelogic.libcaption.constant.LibCaptionStatus;
 import ph.extremelogic.libcaption.model.CcData;
 import ph.extremelogic.libcaption.model.UserData;
+import ph.extremelogic.texttrack.TextTrackException;
 import ph.extremelogic.texttrack.utils.Debug;
 
 import java.util.Arrays;
@@ -121,7 +122,7 @@ public class Cea708 {
 
         int offset = 3;
 
-        Debug.print("  data[0]: " + (data[offset + 0] & 0xFF));
+        Debug.print("  data[0]: " + (data[offset] & 0xFF));
         Debug.print("  data[1]: " + (data[offset + 1] & 0xFF));
         Debug.print("  data[2]: " + (data[offset + 2] & 0xFF));
 
@@ -162,12 +163,8 @@ public class Cea708 {
             cea708Data.setUserData(userData);
             Debug.print("cea708_parse_user_data_type_strcture result");
             printDataArray(data, data.length);
-        } else if (cea708Data.getUserDataTypeCode() == 4) {
-            // handle additional CEA-608 data
-        } else if (cea708Data.getUserDataTypeCode() == 5) {
-            // handle luma PAM data
         } else {
-            // handle ATSC reserved user data
+            throw new TextTrackException("Unsupported CEA708 data type code " + cea708Data.getUserDataTypeCode());
         }
         return LibCaptionStatus.OK;
     }
