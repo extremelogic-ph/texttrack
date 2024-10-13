@@ -3,12 +3,19 @@ package ph.extremelogic.texttrack.utils;
 import ph.extremelogic.texttrack.TextTrack;
 
 public class Debug {
+    /**
+     * Private constructor to prevent instantiation of this utility class.
+     */
+    private Debug() {
+        // Prevent instantiation
+    }
+
     public static void print(String data) {
         print(data, false);
     }
 
     public static void print(String data, boolean noLineBreak) {
-        if (TextTrack.debug) {
+        if (TextTrack.DEBUG) {
             if (noLineBreak) {
                 System.out.print(data);
             } else {

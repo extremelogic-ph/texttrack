@@ -54,12 +54,12 @@ public class Utf8 {
             return 0;
         }
 
-        int[] UTF8_CHAR_LENGTH = {
+        int[] utf8CharLength = {
                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
                 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 3, 3, 4, 0
         };
 
-        return UTF8_CHAR_LENGTH[(c[0] >> 3) & 0x1F];
+        return utf8CharLength[(c[0] >> 3) & 0x1F];
     }
 
     /**

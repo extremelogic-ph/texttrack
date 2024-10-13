@@ -45,7 +45,7 @@ import static ph.extremelogic.libcaption.TransportSystem.TS_PACKET_SIZE;
  */
 public class TextTrack {
     private static final int EXIT_FAILURE = 1;
-    public static final boolean debug = false;
+    public static final boolean DEBUG = false;
 
     /**
      * Main entry point for the TextTrack application.

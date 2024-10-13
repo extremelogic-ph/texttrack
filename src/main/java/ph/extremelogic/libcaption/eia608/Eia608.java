@@ -27,13 +27,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Eia608 {
+    /**
+     * Private constructor to prevent instantiation of this utility class.
+     */
+    private Eia608() {
+        // Prevent instantiation
+    }
 
     // Style map for visual representation
-    public static final String[] EIA608_STYLE_MAP = {
+    protected static final String[] EIA608_STYLE_MAP = {
             "white", "green", "blue", "cyan", "red", "yellow", "magenta", "italics"
     };
     // Mapping for characters, this would be populated according to your needs
-    public static final Map<Integer, String> EIA608_CHAR_MAP = new HashMap<>() {{
+    protected static final Map<Integer, String> EIA608_CHAR_MAP = new HashMap<>() {{
         put(0, "\u0020"); // SPACE
         put(1, "\u0021"); // EXCLAMATION_MARK
         put(2, "\""); // QUOTATION_MARK
@@ -338,7 +344,8 @@ public class Eia608 {
 
     // Convert to UTF-8
     public static int eia608ToUtf8(int ccData, int[] chan, String[] str1, String[] str2) {
-        int[] c1 = new int[1], c2 = new int[1];
+        int[] c1 = new int[1];
+        int[] c2 = new int[1];
         int size = eia608ToIndex(ccData, chan, c1, c2);
         str1[0] = utf8FromIndex(c1[0]);
         str2[0] = utf8FromIndex(c2[0]);

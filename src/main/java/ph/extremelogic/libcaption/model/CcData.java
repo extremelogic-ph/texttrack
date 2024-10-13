@@ -39,5 +39,5 @@ public class CcData {
     private int markerBits; // 5 bits
     private boolean ccValid; // 1 bit
     private CcType ccType; // 2 bits
-    private int ccData; // 16 bits
+    private int ccPayload; // 16 bits
 }

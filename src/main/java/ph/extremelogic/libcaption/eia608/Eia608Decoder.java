@@ -39,7 +39,7 @@ public class Eia608Decoder {
     /**
      * A precomputed table for EIA-608 parity checking.
      */
-    public static final int[] EIA_608_PARITY_TABLE = ArrayUtil.concatenate(computeEIA608B1(0), computeEIA608B1(64));
+    protected static final int[] EIA_608_PARITY_TABLE = ArrayUtil.concatenate(computeEIA608B1(0), computeEIA608B1(64));
 
     /**
      * Private constructor to prevent instantiation of this utility class.

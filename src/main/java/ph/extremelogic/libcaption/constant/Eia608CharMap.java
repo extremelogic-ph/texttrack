@@ -30,7 +30,8 @@ public class Eia608CharMap {
     private Eia608CharMap() {
         // Prevent instantiation
     }
-    public static final String[] EIA608_CHAR_MAP = new String[]{
+
+    protected static final String[] EIA608_CHAR_MAP = new String[]{
             Eia608CharConstants.EIA608_CHAR_NULL,
             Eia608CharConstants.EIA608_CHAR_SPACE,
             Eia608CharConstants.EIA608_CHAR_EXCLAMATION_MARK,

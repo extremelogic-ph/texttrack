@@ -93,7 +93,7 @@ public class Cea708 {
             userData.getCcData()[i].setMarkerBits((data[offset] >> 3) & 0xFF);
             userData.getCcData()[i].setCcValid((((data[offset] >> 2) & 0xFF) & 0x01) != 0);
             userData.getCcData()[i].setCcType(CcType.values()[((data[offset] & 0xFF) & 0x03)]);
-            userData.getCcData()[i].setCcData(((data[offset + 1] & 0xFF) << 8) | (data[offset + 2] & 0xFF));
+            userData.getCcData()[i].setCcPayload(((data[offset + 1] & 0xFF) << 8) | (data[offset + 2] & 0xFF));
             offset += 3;
         }
         return userData;
@@ -129,7 +129,7 @@ public class Cea708 {
         Debug.print("  data[2]: " + (data[offset + 2] & 0xFF));
 
         if (cea708Data.getProvider() == ItuTt35ProviderCode.T_35_PROVIDER_ATSC) {
-            System.out.println("" + size + " - < 4");
+            Debug.print("" + size + " - < 4");
             if (size - offset < 4) {
                 return LibCaptionStatus.ERROR;
             }
@@ -185,7 +185,7 @@ public class Cea708 {
         for (int i = 0; i < count; i++) {
             boolean valid = cea708Data.getUserData().getCcData()[i].isCcValid();
             CcType type = cea708Data.getUserData().getCcData()[i].getCcType();
-            int ccData = cea708Data.getUserData().getCcData()[i].getCcData();
+            int ccData = cea708Data.getUserData().getCcData()[i].getCcPayload();
 
             if (valid && type == CcType.NTSC_CC_FIELD_1) {
                 status = frame.decode(ccData, cea708Data.getTimestamp());
