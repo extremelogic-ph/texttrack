@@ -66,10 +66,6 @@ public class Mpeg {
         int offset = 2;
 
         Debug.print("DEBUG " + size + " _find_emulation_prevention_byte input: ");
-
-        if (size > data.length) {
-            // size = data.length;
-        }
         Debug.printDataArray(data, size);
 
         while (offset < size) {
