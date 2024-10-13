@@ -54,128 +54,61 @@ public class Eia608FromUtf8 {
             return 0x0000;
         }
 
-        int YYCURSOR = 0;
-        int yych;
+        int yych = s.codePointAt(0);
 
-        // Get the Unicode code point at the current cursor position
-        yych = s.codePointAt(YYCURSOR);
-        int charCount = Character.charCount(yych); // Number of char units (1 or 2) for the code point
-
-        if (yych <= '`') {
-            if (yych <= '*') {
-                if (yych <= '&') {
-                    if (yych <= 0x00) {
-                        // NULL
-                        return 0x0000;
-                    } else if (yych <= 0x1F) {
-                        // DEFAULT_RULE
-                        return 0x0000;
-                    } else {
-                        // ASCII range
-                        return (yych << 8) & 0xFF00;
-                    }
+        // Handle special ASCII character cases
+        switch (yych) {
+            case '\'': return 0x1229; // APOSTROPHE -> RIGHT_SINGLE_QUOTATION_MARK
+            case '*':  return 0x1228; // ASTERISK
+            case '\\': return 0x132B; // REVERSE_SOLIDUS
+            case '^':  return 0x132C; // CIRCUMFLEX_ACCENT
+            case '_':  return 0x132D; // LOW_LINE
+            case '`':  return 0x1226; // GRAVE_ACCENT -> LEFT_SINGLE_QUOTATION_MARK
+            case '{':  return 0x1329; // LEFT_CURLY_BRACKET
+            case '|':  return 0x132E; // VERTICAL_LINE
+            case '}':  return 0x132A; // RIGHT_CURLY_BRACKET
+            case '~':  return 0x132F; // TILDE
+            default:
+                if (yych <= 0x1F || yych == 127) {
+                    // Control characters and DEL
+                    return 0x0000;
+                } else if (yych >= 0x20 && yych <= 0x7F) {
+                    // Printable ASCII characters
+                    return yych << 8;
                 } else {
-                    if (yych == '\'') {
-                        // APOSTROPHE -> RIGHT_SINGLE_QUOTATION_MARK
-                        return 0x1229;
-                    } else if (yych <= ')') {
-                        // ASCII range
-                        return (yych << 8) & 0xFF00;
-                    } else if (yych == '*') {
-                        // ASTERISK
-                        return 0x1228;
-                    } else {
-                        // ASCII range
-                        return (yych << 8) & 0xFF00;
+                    // Handle special Unicode characters
+                    switch (yych) {
+                        case 0x00A0: return 0x1139; // NO_BREAK_SPACE
+                        case 0x00A1: return 0x1227; // INVERTED_EXCLAMATION_MARK
+                        case 0x00A2: return 0x1135; // CENT_SIGN
+                        case 0x00A3: return 0x1136; // POUND_SIGN
+                        case 0x00A4: return 0x1336; // CURRENCY_SIGN
+                        case 0x00A5: return 0x1335; // YEN_SIGN
+                        case 0x00A6: return 0x1337; // BROKEN_BAR
+                        case 0x00A9: return 0x122B; // COPYRIGHT_SIGN
+                        case 0x00AB: return 0x123E; // LEFT_POINTING_DOUBLE_ANGLE_QUOTATION_MARK
+                        case 0x00AE: return 0x1130; // REGISTERED_SIGN
+                        case 0x00B0: return 0x1131; // DEGREE_SIGN
+                        case 0x00BB: return 0x123F; // RIGHT_POINTING_DOUBLE_ANGLE_QUOTATION_MARK
+                        case 0x00BD: return 0x1132; // VULGAR_FRACTION_ONE_HALF
+                        case 0x00BF: return 0x1133; // INVERTED_QUESTION_MARK
+                        case 0x00C0: return 0x1230; // LATIN_CAPITAL_LETTER_A_WITH_GRAVE
+                        case 0x00C1: return 0x1220; // LATIN_CAPITAL_LETTER_A_WITH_ACUTE
+                        case 0x00C2: return 0x1231; // LATIN_CAPITAL_LETTER_A_WITH_CIRCUMFLEX
+                        case 0x00C3: return 0x1320; // LATIN_CAPITAL_LETTER_A_WITH_TILDE
+                        case 0x00C4: return 0x1330; // LATIN_CAPITAL_LETTER_A_WITH_DIAERESIS
+                        case 0x00C5: return 0x1338; // LATIN_CAPITAL_LETTER_A_WITH_RING_ABOVE
+                        case 0x00C7: return 0x1232; // LATIN_CAPITAL_LETTER_C_WITH_CEDILLA
+                        case 0x00C8: return 0x1233; // LATIN_CAPITAL_LETTER_E_WITH_GRAVE
+                        case 0x00C9: return 0x1221; // LATIN_CAPITAL_LETTER_E_WITH_ACUTE
+                        case 0x00CA: return 0x1234; // LATIN_CAPITAL_LETTER_E_WITH_CIRCUMFLEX
+                        case 0x00CB: return 0x1235; // LATIN_CAPITAL_LETTER_E_WITH_DIAERESIS
+                        // Add other special Unicode cases as needed
+                        default:
+                            // Default rule for unsupported characters
+                            return 0x0000;
                     }
                 }
-            } else {
-                if (yych <= ']') {
-                    if (yych == '\\') {
-                        // REVERSE_SOLIDUS
-                        return 0x132B;
-                    } else {
-                        // ASCII range
-                        return (yych << 8) & 0xFF00;
-                    }
-                } else {
-                    if (yych == '^') {
-                        // CIRCUMFLEX_ACCENT
-                        return 0x132C;
-                    } else if (yych == '_') {
-                        // LOW_LINE
-                        return 0x132D;
-                    } else if (yych == '`') {
-                        // GRAVE_ACCENT -> LEFT_SINGLE_QUOTATION_MARK
-                        return 0x1226;
-                    } else {
-                        // ASCII range
-                        return (yych << 8) & 0xFF00;
-                    }
-                }
-            }
-        } else {
-            if (yych <= 0x7F) {
-                if (yych <= '|') {
-                    if (yych <= 'z') {
-                        // ASCII range
-                        return (yych << 8) & 0xFF00;
-                    } else if (yych == '{') {
-                        // LEFT_CURLY_BRACKET
-                        return 0x1329;
-                    } else if (yych == '|') {
-                        // VERTICAL_LINE
-                        return 0x132E;
-                    } else {
-                        // ASCII range
-                        return (yych << 8) & 0xFF00;
-                    }
-                } else {
-                    if (yych == '}') {
-                        // RIGHT_CURLY_BRACKET
-                        return 0x132A;
-                    } else if (yych == '~') {
-                        // TILDE
-                        return 0x132F;
-                    } else {
-                        // DEL/BACKSPACE
-                        return 0x0000;
-                    }
-                }
-            } else {
-                // Handle Unicode characters beyond ASCII
-                switch (yych) {
-                    case 0x00A0: return 0x1139; // NO_BREAK_SPACE
-                    case 0x00A1: return 0x1227; // INVERTED_EXCLAMATION_MARK
-                    case 0x00A2: return 0x1135; // CENT_SIGN
-                    case 0x00A3: return 0x1136; // POUND_SIGN
-                    case 0x00A4: return 0x1336; // CURRENCY_SIGN
-                    case 0x00A5: return 0x1335; // YEN_SIGN
-                    case 0x00A6: return 0x1337; // BROKEN_BAR
-                    case 0x00A9: return 0x122B; // COPYRIGHT_SIGN
-                    case 0x00AB: return 0x123E; // LEFT_POINTING_DOUBLE_ANGLE_QUOTATION_MARK
-                    case 0x00AE: return 0x1130; // REGISTERED_SIGN
-                    case 0x00B0: return 0x1131; // DEGREE_SIGN
-                    case 0x00BB: return 0x123F; // RIGHT_POINTING_DOUBLE_ANGLE_QUOTATION_MARK
-                    case 0x00BD: return 0x1132; // VULGAR_FRACTION_ONE_HALF
-                    case 0x00BF: return 0x1133; // INVERTED_QUESTION_MARK
-                    case 0x00C0: return 0x1230; // LATIN_CAPITAL_LETTER_A_WITH_GRAVE
-                    case 0x00C1: return 0x1220; // LATIN_CAPITAL_LETTER_A_WITH_ACUTE
-                    case 0x00C2: return 0x1231; // LATIN_CAPITAL_LETTER_A_WITH_CIRCUMFLEX
-                    case 0x00C3: return 0x1320; // LATIN_CAPITAL_LETTER_A_WITH_TILDE
-                    case 0x00C4: return 0x1330; // LATIN_CAPITAL_LETTER_A_WITH_DIAERESIS
-                    case 0x00C5: return 0x1338; // LATIN_CAPITAL_LETTER_A_WITH_RING_ABOVE
-                    case 0x00C7: return 0x1232; // LATIN_CAPITAL_LETTER_C_WITH_CEDILLA
-                    case 0x00C8: return 0x1233; // LATIN_CAPITAL_LETTER_E_WITH_GRAVE
-                    case 0x00C9: return 0x1221; // LATIN_CAPITAL_LETTER_E_WITH_ACUTE
-                    case 0x00CA: return 0x1234; // LATIN_CAPITAL_LETTER_E_WITH_CIRCUMFLEX
-                    case 0x00CB: return 0x1235; // LATIN_CAPITAL_LETTER_E_WITH_DIAERESIS
-                    // Add other cases as needed for your tests
-                    default:
-                        // DEFAULT_RULE
-                        return 0x0000;
-                }
-            }
         }
     }
 }
