@@ -6,7 +6,7 @@ DIFF_FILE_TRUTH=diff_signature.txt
 DIFF_RESULTS=diff_results.txt
 
 TARGET_DIR=../../../target
-JAR_FILE=texttrack-1.0-SNAPSHOT.jar
+JAR_FILE=extremelogic-texttrack-0.0.1.jar
 
 java -jar ${TARGET_DIR}/${JAR_FILE} ./cc_minimum.ts > ${OUTPUT_JAVA} 
 

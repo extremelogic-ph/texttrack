@@ -5,8 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ph.extremelogic</groupId>
-    <artifactId>texttrack</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>extremelogic-texttrack</artifactId>
+    <version>0.0.1</version>
+
+    <name>Extreme Logic Text Track</name>
+    <url>https://www.extremelogic.ph</url>
+    <description>Caption Decoder</description>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -14,6 +18,17 @@
         <junit.jupiter.version>5.8.2</junit.jupiter.version>
         <lombok.version>1.18.28</lombok.version>
     </properties>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
     <dependencies>
         <dependency>
@@ -78,7 +93,78 @@
                     </archive>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.1.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/licenses/MIT</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Virgilio "Jan" So</name>
+            <email>virgilio.so@extremelogic.ph</email>
+            <organization>Extreme Logic</organization>
+            <organizationUrl>https://www.extremelogic.ph</organizationUrl>
+            <timezone>UTC+08:00</timezone>
+        </developer>
+    </developers>
+    <scm>
+        <url>https://github.com/yourusername/yourproject</url>
+        <connection>scm:git:git://github.com/extremelogic-ph/texttrack.git</connection>
+        <developerConnection>scm:git:ssh://github.com:extremelogic-ph/texttrack.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
 </project>
 

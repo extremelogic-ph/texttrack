@@ -5,6 +5,20 @@ texttrack is a Java port of the libcaption library
 ## Features
 - Closed Captions Support: Encode and decode CEA-608/708 closed captions.
 
+## Maven Dependency
+
+To use texttrack in your Maven project, add the following dependency to your `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>ph.extremelogic</groupId>
+    <artifactId>extremelogic-texttrack</artifactId>
+    <version>0.0.1</version>
+</dependency>
+```
+
+This will include `texttrack` in your project and handle all necessary dependencies.
+
 ## Contributing
 
 We welcome contributions from those with expertise in MPEG encoding and decoding. While my primary experience comes from porting the code from C, I’m eager to collaborate with individuals who have in-depth knowledge in this area to improve the project further.
