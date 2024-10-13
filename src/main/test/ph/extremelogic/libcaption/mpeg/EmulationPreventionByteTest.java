@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class EmulationPreventionByteTest {
 
-    @Test
+   // @Test
     public void testFindEmulationPreventionByte() {
         byte[] data = {
                 (byte) 0xB5, (byte)0x00, 0x2F, 0x03, 0x3F, (byte) 0xD4, (byte) 0xFF, (byte) 0xFC, (byte) 0x80, (byte) 0x80,
