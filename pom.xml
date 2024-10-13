@@ -6,7 +6,7 @@
 
     <groupId>ph.extremelogic</groupId>
     <artifactId>extremelogic-texttrack</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2-SNAPSHOT</version>
 
     <name>Extreme Logic Text Track</name>
     <url>https://www.extremelogic.ph</url>
