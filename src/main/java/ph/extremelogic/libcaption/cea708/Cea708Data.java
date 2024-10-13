@@ -116,7 +116,7 @@ public class Cea708Data {
     public boolean init(double timestamp) {
         this.country = ItuT35CountryCode.COUNTRY_UNITED_STATES;
         this.provider = T_35_PROVIDER_ATSC;
-        this.userIdentifier = 0x47413934; // GA94;
+        this.userIdentifier = 0x47413934;
         this.userDataTypeCode = 3;
         this.directvUserDataLength = 0;
         this.userData.setProcessEmDataFlag(false);

@@ -275,7 +275,7 @@ public class Mpeg {
 
                         cea708Data.init(dts + cts);
 
-                        newPacketStatus = Cea708.parseH264(msg.getPayload(), msg.getSize(), cea708Data, index);
+                        newPacketStatus = Cea708.parseH264(msg.getPayload(), msg.getSize(), cea708Data);
                         packet.setStatus(CaptionFrame.statusUpdate(packet.getStatus(), newPacketStatus));
 
                         mpegBitstreamCea708Sort(packet);

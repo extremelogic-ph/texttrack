@@ -23,7 +23,13 @@
  */
 package ph.extremelogic.libcaption.constant;
 
-public class Eia608Charmap {
+public class Eia608CharMap {
+    /**
+     * Private constructor to prevent instantiation of this utility class.
+     */
+    private Eia608CharMap() {
+        // Prevent instantiation
+    }
     public static final String[] EIA608_CHAR_MAP = new String[]{
             Eia608CharConstants.EIA608_CHAR_NULL,
             Eia608CharConstants.EIA608_CHAR_SPACE,

@@ -43,6 +43,12 @@ import static ph.extremelogic.texttrack.utils.Debug.printDataArray;
  * the parsed data to caption frames.
  */
 public class Cea708 {
+    /**
+     * Private constructor to prevent instantiation of this utility class.
+     */
+    private Cea708() {
+        // Prevent instantiation
+    }
 
     /**
      * Initializes a {@code Cea708Data} object with default values based on CEA-708 standards.
@@ -76,14 +82,11 @@ public class Cea708 {
      * @return the populated {@code UserData} object
      */
     private static UserData parseUserDataTypeStructure(byte[] data, int size, UserData userData) {
-        //  Debug.print("cea708_parse_user_data_type_strcture <<<<<<<<<<<<<<<<<<<<");
-
         userData.setProcessEmDataFlag((data[0] & 0x80) != 0);
         userData.setProcessCcDataFlag((data[0] & 0x40) != 0);
         userData.setAdditionalDataFlag((data[0] & 0x20) != 0);
         userData.setCcCount(data[0] & 0x1F);
         userData.setEmData(data[1] & 0xFF);
-        //Debug.print(" - ccCount: " + userData.ccCount);
 
         int offset = 2;
         for (int i = 0; offset + 3 <= size && i < userData.getCcCount(); i++) {
@@ -102,10 +105,9 @@ public class Cea708 {
      * @param data the byte array containing the H.264 video stream data
      * @param size the size of the data in bytes
      * @param cea708Data the {@code Cea708Data} object to populate
-     * @param index an index value for tracking
      * @return the status of the parsing operation, represented as a {@code LibCaptionStatus}
      */
-    public static LibCaptionStatus parseH264(byte[] data, int size, Cea708Data cea708Data, int index) {
+    public static LibCaptionStatus parseH264(byte[] data, int size, Cea708Data cea708Data) {
         Debug.print("cea708_parse_h264 [START] <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         printDataArray(data, data.length);
 
