@@ -86,7 +86,7 @@ public class TextTrack {
             Debug.print("DEBUG index: " + index++);
 
             if (ts.parsePacket(pkt) == LibCaptionStatus.READY.ordinal()) {
-                processPacket(ts, mpegbs, frame, index);
+                processPacket(ts, mpegbs, frame);
             } else {
                 Debug.print("Not yet ready");
             }
@@ -100,9 +100,8 @@ public class TextTrack {
      * @param ts The transport system handling the stream packets.
      * @param mpegbs The MPEG bit stream to parse.
      * @param frame The caption frame to update.
-     * @param index The current packet index.
      */
-    private static void processPacket(TransportSystem ts, MpegBitStream mpegbs, CaptionFrame frame, int index) {
+    private static void processPacket(TransportSystem ts, MpegBitStream mpegbs, CaptionFrame frame) {
         double dts = ts.dtsSeconds();
         double cts = ts.ctsSeconds();
 
@@ -110,7 +109,7 @@ public class TextTrack {
         Debug.print("DEBUG ts.size: " + ts.getSize());
 
         while (ts.getSize() > 0) {
-            int bytesRead = mpegBitStreamParse(mpegbs, frame, ts.getData(), ts.getSize(), STREAM_TYPE_H264, dts, cts, index);
+            int bytesRead = mpegBitStreamParse(mpegbs, frame, ts.getData(), ts.getSize(), STREAM_TYPE_H264, dts, cts);
             ts.setData(Arrays.copyOfRange(ts.getData(), bytesRead, ts.getData().length));
             ts.setSize(ts.getSize() - bytesRead);
 

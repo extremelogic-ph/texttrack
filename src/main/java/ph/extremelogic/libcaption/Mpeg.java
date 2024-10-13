@@ -36,18 +36,32 @@ import ph.extremelogic.texttrack.utils.Debug;
 
 import java.util.Arrays;
 
+/**
+ * The {@code Mpeg} class handles the parsing and processing of MPEG bitstreams,
+ * specifically focusing on SEI messages and CEA-708 data for captioning.
+ */
 public class Mpeg {
-    // Constants
+    // MPEG stream type constants
     public static final int STREAM_TYPE_H262 = 0x02;
     public static final int STREAM_TYPE_H264 = 0x1B;
     public static final int STREAM_TYPE_H265 = 0x24;
+
+    // SEI packet type constants for different MPEG stream types
     public static final int H262_SEI_PACKET = 0xB2;
     public static final int H264_SEI_PACKET = 0x06;
     public static final int H265_SEI_PACKET = 0x27; // There is also 0x28
+
+    // Constants for maximum sizes
     public static final int MAX_NALU_SIZE = 6 * 1024 * 1024; // 6 MB
     public static final int MAX_REFERENCE_FRAMES = 64;
 
-    // Utility methods
+    /**
+     * Finds and returns the offset of the next emulation prevention byte in the provided byte array.
+     *
+     * @param data The byte array containing the data to scan.
+     * @param size The size of the data to scan within the array.
+     * @return The offset within the array where the emulation prevention byte is found, or the input size if none.
+     */
     public static int findEmulationPreventionByte(byte[] data, int size) {
         int offset = 2;
 
@@ -92,15 +106,23 @@ public class Mpeg {
         return size;
     }
 
+    /**
+     * Copies data from source to destination while handling emulation prevention bytes.
+     *
+     * @param destData The destination array where data will be copied.
+     * @param destOffset The starting position in the destination array.
+     * @param destSize The maximum number of bytes to copy to the destination array.
+     * @param srcData The source array from which to copy data.
+     * @param srcOffset The starting position in the source array.
+     * @param srcSize The number of bytes available to copy from the source array.
+     * @return The total number of bytes copied to the destination array.
+     */
     private static int copyToRbsp(byte[] destData, int destOffset, int destSize, byte[] srcData, int srcOffset, int srcSize) {
         Debug.print("copy_to_rbsp [START] <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-        //   Debug.print(" - destOffset: " + destOffset);
         Debug.print(" - destSize: " + destSize);
-        // Debug.print(" - srcOffset: " + srcOffset);
         Debug.print(" - sorcSize: " + srcSize);
-//        printDataArray(destData, destData.length);
-//        printDataArray(srcData, srcData.length);
-        int toCopy, totalSize = 0;
+        int toCopy;
+        int totalSize = 0;
         int loop = 0;
 
         while (true) {
@@ -111,7 +133,7 @@ public class Mpeg {
             toCopy = findEmulationPreventionByte(srcData, destSize);
             Debug.print("    DEBUG " + loop++ + " bytes to copy: " + toCopy);
             System.arraycopy(srcData, srcOffset - 2, destData, destOffset, toCopy);
-//            printDataArray(destData, destSize);
+
             totalSize += toCopy;
             destOffset += toCopy;
             destSize -= toCopy;
@@ -127,10 +149,18 @@ public class Mpeg {
         }
     }
 
-    public static LibCaptionStatus seiParse(Sei sei, byte[] data, int size, double timestamp, int index) {
+    /**
+     * Parses SEI messages from the provided data array and updates the given SEI object.
+     *
+     * @param sei The SEI object to update with parsed messages.
+     * @param data The data array containing the SEI messages.
+     * @param size The size of the data in the array.
+     * @param timestamp The timestamp to assign to parsed SEI messages.
+     * @return The status of the parsing process, either OK or ERROR.
+     */
+    public static LibCaptionStatus seiParse(Sei sei, byte[] data, int size, double timestamp) {
         Debug.print("DEBUG sei_parse");
         sei.init(timestamp);
-        int ret = 0;
         int dataOffset = 0;
 
         // SEI may contain more than one payload
@@ -190,7 +220,7 @@ public class Mpeg {
                 msg.setSize(payloadSize);
                 Debug.print("payload type " + msg.getType().getValue());
                 Debug.print("payload size " + msg.getSize());
-                msg.setPayload(new byte[payloadSize + 0]);
+                msg.setPayload(new byte[payloadSize]);
 
                 // Copy data to payload using copy_to_rbsp
                 Debug.printDataArray(data, size);
@@ -207,7 +237,6 @@ public class Mpeg {
 
                 dataOffset += bytes;
                 size -= bytes;
-                ret++;
             }
         }
 
@@ -215,7 +244,19 @@ public class Mpeg {
         return LibCaptionStatus.OK;
     }
 
-    public static int mpegBitStreamParse(MpegBitStream packet, CaptionFrame frame, byte[] data, int size, int streamType, double dts, double cts, int debugindex) {
+    /**
+     * Parses MPEG bitstream data, handling SEI messages and updating caption frame data.
+     *
+     * @param packet The MPEG bitstream packet to process.
+     * @param frame The caption frame to update with parsed data.
+     * @param data The byte array containing MPEG data.
+     * @param size The size of the data to process.
+     * @param streamType The type of MPEG stream being processed (e.g., H264).
+     * @param dts Decoding time stamp for synchronization.
+     * @param cts Composition time stamp for display timing.
+     * @return The number of bytes processed in the current batch.
+     */
+    public static int mpegBitStreamParse(MpegBitStream packet, CaptionFrame frame, byte[] data, int size, int streamType, double dts, double cts) {
         Debug.print("mpeg_bitstream_parse");
         Debug.print("MAX_NALU_SIZE: " + MAX_NALU_SIZE);
         Debug.print("packet size: " + packet.getSize());
@@ -234,10 +275,11 @@ public class Mpeg {
         Sei seiMsgHolder = new Sei(dts + cts);
         LibCaptionStatus newPacketStatus;
 
-        int headerSize, scpos;
+        int headerSize;
+        int scpos;
+
         packet.setStatus(LibCaptionStatus.OK);
         System.arraycopy(data, 0, packet.getNaluData(), packet.getSize(), size);
-       // packet.size += size;
         packet.setSize(packet.getSize() + size);
 
         headerSize = 4;
@@ -256,7 +298,7 @@ public class Mpeg {
             if ((packet.getSize() > 4) && ((packet.getNaluData()[3] & 0x1F) == H264_SEI_PACKET)) {
                 byte[] seiData = Arrays.copyOfRange(packet.getNaluData(), headerSize, scpos);
                 Debug.print("H264_SEI_PACKET");
-                newPacketStatus = seiParse(seiMsgHolder, seiData, scpos - headerSize, dts + cts, index);
+                newPacketStatus = seiParse(seiMsgHolder, seiData, scpos - headerSize, dts + cts);
                 packet.setStatus(CaptionFrame.statusUpdate(packet.getStatus(), newPacketStatus));
 
                 int count = 0;
@@ -279,7 +321,6 @@ public class Mpeg {
                         packet.setStatus(CaptionFrame.statusUpdate(packet.getStatus(), newPacketStatus));
 
                         mpegBitstreamCea708Sort(packet);
-//                        packet.sortCEA708();
 
                         // Loop will terminate on LIBCAPTION_READY
                         while (true) {
@@ -316,6 +357,13 @@ public class Mpeg {
         return size;
     }
 
+    /**
+     * Finds the start code in a byte array that signifies the beginning of a frame or field in video compression.
+     *
+     * @param data The byte array containing the data to search.
+     * @param size The size of the data array to search through.
+     * @return The position of the start code or 0 if not found.
+     */
     private static int findStartCode(byte[] data, int size) {
         int startCode = 0xFFFFFFFF;
         for (int i = 1; i < size; i++) {
@@ -356,7 +404,13 @@ public class Mpeg {
         packet.setCea708Data(cea708Data);
     }
 
-
+    /**
+     * Retrieves a Cea708Data object from an MPEG bitstream at a specified position, accounting for circular indexing.
+     *
+     * @param packet The MPEG bitstream containing the CEA708 data.
+     * @param pos The position in the bitstream from which to retrieve the data.
+     * @return The CEA708 data object at the specified position.
+     */
     private static Cea708Data mpegBitstreamCea708At(MpegBitStream packet, int pos) {
         return packet.getCea708Data()[(packet.getFront() + pos) % MAX_REFERENCE_FRAMES];
     }
