@@ -537,20 +537,15 @@ public class CaptionFrame {
     public String toText() {
         StringBuilder sb = new StringBuilder();
         for (int r = 0; r < SCREEN_ROWS; r++) {
-            boolean lineHasContent = false;
             StringBuilder line = new StringBuilder();
             for (int c = 0; c < SCREEN_COLS; c++) {
                 CaptionFrameCell cell = this.front.getCell()[r][c];
-                if (cell != null && !cell.getData().isEmpty()) {
-                    lineHasContent = true;
-                    String charStr = cell.getData();
-                    line.append(charStr);
-                } else {
-                    line.append(' ');
-                }
+                String data = (cell != null && !cell.getData().isEmpty()) ? cell.getData() : " ";
+                line.append(data);
             }
-            if (lineHasContent) {
-                sb.append(line.toString().trim()).append("\n");
+            String trimmedLine = line.toString().trim();
+            if (!trimmedLine.isEmpty()) {
+                sb.append(trimmedLine).append("\n");
             }
         }
         return sb.toString();
