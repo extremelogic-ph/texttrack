@@ -6,7 +6,7 @@ import ph.extremelogic.libcaption.Utf8;
 import static org.junit.jupiter.api.Assertions.*;
 import static ph.extremelogic.libcaption.Utf8.utf8CharLength;
 
-class utf8Test {
+class Utf8Test {
 
     @Test
     void testUtf8CharLength() {
@@ -30,6 +30,27 @@ class utf8Test {
 
         // Test array with null byte
         assertEquals(0, utf8CharLength(new byte[]{0x00}));
+
+        // Test with a four-byte UTF-8 character ('😁')
+        assertEquals(4, utf8CharLength(new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x81}));
+
+        // Test with an invalid start byte (0xFF)
+        assertEquals(0, utf8CharLength(new byte[]{(byte)0xFF}));
+
+        // Test with negative byte values (Java bytes are signed)
+        assertEquals(2, utf8CharLength(new byte[]{(byte)0xC2, (byte)0xA2})); // '¢'
+
+        // Test with a start byte indicating more bytes than provided
+        assertEquals(2, utf8CharLength(new byte[]{(byte)0xC2}));
+
+        // Test with the maximum valid Unicode code point (U+10FFFF)
+        assertEquals(4, utf8CharLength(new byte[]{(byte)0xF4, (byte)0x8F, (byte)0xBF, (byte)0xBF}));
+
+        // Test with an overlong encoding (invalid in UTF-8)
+        // assertEquals(0, utf8CharLength(new byte[] {(byte)0xC0, (byte)0xAF}));
+
+        // Test with a code point beyond the Unicode range (invalid)
+        //assertEquals(0, utf8CharLength(new byte[] {(byte)0xF4, (byte)0x90, (byte)0x80, (byte)0x80}));
     }
 
     @Test
