@@ -19,6 +19,22 @@ To use texttrack in your Maven project, add the following dependency to your `po
 
 This will include `texttrack` in your project and handle all necessary dependencies.
 
+## Building the Project
+
+### Standard JAR (default)
+
+```
+mvn clean package
+```
+
+### Native executable
+
+```
+mvn clean package -Pnative
+```
+
+Note: Ensure that GraalVM is correctly installed and that the `native-image` command is accessible.
+
 ## Contributing
 
 We welcome contributions from those with expertise in MPEG encoding and decoding. While my primary experience comes from porting the code from C, I’m eager to collaborate with individuals who have in-depth knowledge in this area to improve the project further.
